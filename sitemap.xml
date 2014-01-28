@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://sky-y.github.io/site-pandoc-jp/about/</loc>
+        <lastmod>2014-01-28T22:09:55+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://sky-y.github.io/site-pandoc-jp/blog/archives/</loc>
-        <lastmod>2014-01-28T21:43:14+09:00</lastmod>
+        <lastmod>2014-01-28T22:09:55+09:00</lastmod>
     </url>
     <url>
         <loc>http://sky-y.github.io/site-pandoc-jp/</loc>
-        <lastmod>2014-01-28T21:43:14+09:00</lastmod>
+        <lastmod>2014-01-28T22:09:55+09:00</lastmod>
     </url>
     <url>
         <loc>http://sky-y.github.io/site-pandoc-jp/robots.txt</loc>
