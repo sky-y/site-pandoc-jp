@@ -9,11 +9,7 @@
   <meta name="author" content="Japanese Pandoc User Association">
 
   
-  <meta name="description" content="Pandoc ユーザーズガイド 日本語版 14.01.28 仮公開
-書式
-pandoc [options] [input-file]…
-説明
-Pandocは Haskell で書かれたライブラリおよびコマンドラインツールであり、 あるマークアップ形式で書かれた文書を別の形式へ変換するものです。 &hellip;">
+  <meta name="description" content="Pandoc ユーザーズガイド 日本語版 Contents 1 書式 2 説明 2.1 pandoc の使い方 2.2 PDFを作成する 2.3 hsmarkdown 3 オプション 3.1 一般的なオプション 3.2 Readerのオプション 3.3 一般的なWriterオプション [ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -58,45 +54,232 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
     
   </header>
   
-  <p>14.01.28 仮公開</p>
-<h1 id="書式">書式</h1>
+  <div id="toc-container">
+   <table class="toc" id="toc">
+      <tbody>
+         <tr>
+            <td>
+               <div id="toctitle">
+                  <h2>Contents</h2>
+               </div>
+               <ul>
+                  <li class="toc_level-1 toc_section-1">
+                     <a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">書式</span></a>
+                  </li>
+                  <li class="toc_level-1 toc_section-2">
+                     <a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">説明</span></a>
+                     <ul>
+                        <li class="toc_level-2 toc_section-3">
+                           <a href="#tocAnchor-1-2-1"><span class="tocnumber">2.1</span> <span class="toctext">pandoc の使い方</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-4">
+                           <a href="#tocAnchor-1-2-2"><span class="tocnumber">2.2</span> <span class="toctext">PDFを作成する</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-5">
+                           <a href="#tocAnchor-1-2-3"><span class="tocnumber">2.3</span> <span class="toctext">hsmarkdown</span></a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="toc_level-1 toc_section-6">
+                     <a href="#tocAnchor-1-6"><span class="tocnumber">3</span> <span class="toctext">オプション</span></a>
+                     <ul>
+                        <li class="toc_level-2 toc_section-7">
+                           <a href="#tocAnchor-1-6-1"><span class="tocnumber">3.1</span> <span class="toctext">一般的なオプション</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-8">
+                           <a href="#tocAnchor-1-6-2"><span class="tocnumber">3.2</span> <span class="toctext">Readerのオプション</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-9">
+                           <a href="#tocAnchor-1-6-3"><span class="tocnumber">3.3</span> <span class="toctext">一般的なWriterオプション [general-writer-options]</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-10">
+                           <a href="#tocAnchor-1-6-4"><span class="tocnumber">3.4</span> <span class="toctext">特定のWriterに影響を与えるオプション [options-affecting-specific-writers]</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-11">
+                           <a href="#tocAnchor-1-6-5"><span class="tocnumber">3.5</span> <span class="toctext">引用文献の表示</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-12">
+                           <a href="#tocAnchor-1-6-6"><span class="tocnumber">3.6</span> <span class="toctext">HTMLにおける数式の表示</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-13">
+                           <a href="#tocAnchor-1-6-7"><span class="tocnumber">3.7</span> <span class="toctext">ラッパースクリプトのためのオプション</span></a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="toc_level-1 toc_section-14">
+                     <a href="#tocAnchor-1-14"><span class="tocnumber">4</span> <span class="toctext">テンプレート</span></a>
+                  </li>
+                  <li class="toc_level-1 toc_section-15">
+                     <a href="#tocAnchor-1-15"><span class="tocnumber">5</span> <span class="toctext">Pandocによる拡張Markdown [pandocs-markdown]</span></a>
+                     <ul>
+                        <li class="toc_level-2 toc_section-16">
+                           <a href="#tocAnchor-1-15-1"><span class="tocnumber">5.1</span> <span class="toctext">哲学</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-17">
+                           <a href="#tocAnchor-1-15-2"><span class="tocnumber">5.2</span> <span class="toctext">段落</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-18">
+                           <a href="#tocAnchor-1-15-3"><span class="tocnumber">5.3</span> <span class="toctext">ヘッダ</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-19">
+                           <a href="#tocAnchor-1-15-4"><span class="tocnumber">5.4</span> <span class="toctext">引用</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-20">
+                           <a href="#tocAnchor-1-15-5"><span class="tocnumber">5.5</span> <span class="toctext">コードブロック</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-21">
+                           <a href="#tocAnchor-1-15-6"><span class="tocnumber">5.6</span> <span class="toctext">ラインブロック</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-22">
+                           <a href="#tocAnchor-1-15-7"><span class="tocnumber">5.7</span> <span class="toctext">リスト</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-23">
+                           <a href="#tocAnchor-1-15-8"><span class="tocnumber">5.8</span> <span class="toctext">水平線</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-24">
+                           <a href="#tocAnchor-1-15-9"><span class="tocnumber">5.9</span> <span class="toctext">表</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-25">
+                           <a href="#tocAnchor-1-15-10"><span class="tocnumber">5.10</span> <span class="toctext">タイトルブロック</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-26">
+                           <a href="#tocAnchor-1-15-11"><span class="tocnumber">5.11</span> <span class="toctext">YAMLメタデータブロック</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-27">
+                           <a href="#tocAnchor-1-15-12"><span class="tocnumber">5.12</span> <span class="toctext">バックスラッシュ・エスケープ [backslash-escapes]</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-28">
+                           <a href="#tocAnchor-1-15-13"><span class="tocnumber">5.13</span> <span class="toctext">スマートな記号 [smart-punctuation]</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-29">
+                           <a href="#tocAnchor-1-15-14"><span class="tocnumber">5.14</span> <span class="toctext">インライン形式の修飾 [inline-formatting]</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-30">
+                           <a href="#tocAnchor-1-15-15"><span class="tocnumber">5.15</span> <span class="toctext">Math</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-31">
+                           <a href="#tocAnchor-1-15-16"><span class="tocnumber">5.16</span> <span class="toctext">Raw HTML</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-32">
+                           <a href="#tocAnchor-1-15-17"><span class="tocnumber">5.17</span> <span class="toctext">Raw TeX</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-33">
+                           <a href="#tocAnchor-1-15-18"><span class="tocnumber">5.18</span> <span class="toctext">LaTeX macros</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-34">
+                           <a href="#tocAnchor-1-15-19"><span class="tocnumber">5.19</span> <span class="toctext">リンク</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-35">
+                           <a href="#tocAnchor-1-15-20"><span class="tocnumber">5.20</span> <span class="toctext">Images</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-36">
+                           <a href="#tocAnchor-1-15-21"><span class="tocnumber">5.21</span> <span class="toctext">Footnotes</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-37">
+                           <a href="#tocAnchor-1-15-22"><span class="tocnumber">5.22</span> <span class="toctext">文献の引用</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-38">
+                           <a href="#tocAnchor-1-15-23"><span class="tocnumber">5.23</span> <span class="toctext">Non-pandoc extensions</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-39">
+                           <a href="#tocAnchor-1-15-24"><span class="tocnumber">5.24</span> <span class="toctext">Markdown variants</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-40">
+                           <a href="#tocAnchor-1-15-25"><span class="tocnumber">5.25</span> <span class="toctext">Extensions with formats other than markdown</span></a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="toc_level-1 toc_section-41">
+                     <a href="#tocAnchor-1-41"><span class="tocnumber">6</span> <span class="toctext">Producing slide shows with Pandoc</span></a>
+                     <ul>
+                        <li class="toc_level-2 toc_section-42">
+                           <a href="#tocAnchor-1-41-1"><span class="tocnumber">6.1</span> <span class="toctext">スライドショーの構造を作る</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-43">
+                           <a href="#tocAnchor-1-41-2"><span class="tocnumber">6.2</span> <span class="toctext">Incremental lists</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-44">
+                           <a href="#tocAnchor-1-41-3"><span class="tocnumber">6.3</span> <span class="toctext">Inserting pauses</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-45">
+                           <a href="#tocAnchor-1-41-4"><span class="tocnumber">6.4</span> <span class="toctext">Styling the slides</span></a>
+                        </li>
+                        <li class="toc_level-2 toc_section-46">
+                           <a href="#tocAnchor-1-41-5"><span class="tocnumber">6.5</span> <span class="toctext">Speaker notes</span></a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="toc_level-1 toc_section-47">
+                     <a href="#tocAnchor-1-47"><span class="tocnumber">7</span> <span class="toctext">EPUBメタデータ</span></a>
+                  </li>
+                  <li class="toc_level-1 toc_section-48">
+                     <a href="#tocAnchor-1-48"><span class="tocnumber">8</span> <span class="toctext">Literate Haskellのサポート</span></a>
+                  </li>
+                  <li class="toc_level-1 toc_section-49">
+                     <a href="#tocAnchor-1-49"><span class="tocnumber">9</span> <span class="toctext">カスタムWriter</span></a>
+                  </li>
+                  <li class="toc_level-1 toc_section-50">
+                     <a href="#tocAnchor-1-50"><span class="tocnumber">10</span> <span class="toctext">Authors</span></a>
+                  </li>
+               </ul>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div><p>14.01.28 仮公開</p>
+<h1 id="tocAnchor-1-1">書式</h1>
 <p>pandoc [<em>options</em>] [<em>input-file</em>]…</p>
-<h1 id="説明">説明</h1>
+<h1 id="tocAnchor-1-2">説明</h1>
 <p>Pandocは <a href="http://www.haskell.org/">Haskell</a> で書かれたライブラリおよびコマンドラインツールであり、 あるマークアップ形式で書かれた文書を別の形式へ変換するものです。</p>
 <p>対応している入力形式は以下の通りです： <a href="http://daringfireball.net/projects/markdown/">markdown</a>、<a href="http://redcloth.org/textile">Textile</a> （のサブセット、以下同様）、 <a href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html">reStructuredText</a>、 <a href="http://www.w3.org/TR/html40/">HTML</a>、<a href="http://www.latex-project.org/">LaTeX</a>、<a href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki markup</a>、<a href="http://www.haskell.org/haddock/doc/html/ch03s08.html">Haddock markup</a>、<a href="http://dev.opml.org/spec2.html">OPML</a>、<a href="http://www.docbook.org/">DocBook</a>。</p>
 <p>出力形式は以下の通りです：プレーンテキスト、<a href="http://daringfireball.net/projects/markdown/">markdown</a>、<a href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html">reStructuredText</a>、<a href="http://www.w3.org/TR/xhtml1/">XHTML</a>、<a href="http://www.w3.org/TR/html5/">HTML 5</a>、 <a href="http://www.latex-project.org/">LaTeX</a> （<a href="http://www.tex.ac.uk/CTAN/macros/latex/contrib/beamer">beamer</a>スライドショーを含む）、<a href="http://www.pragma-ade.nl/">ConTeXt</a>、<a href="http://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>、<a href="http://dev.opml.org/spec2.html">OPML</a>、<a href="http://www.docbook.org/">DocBook</a>、 <a href="http://opendocument.xml.org/">OpenDocument</a>、<a href="http://en.wikipedia.org/wiki/OpenDocument">ODT</a>、<a href="http://www.microsoft.com/interop/openup/openxml/default.aspx">Word docx</a>、<a href="http://www.gnu.org/software/texinfo/">GNU Texinfo</a>、<a href="http://www.mediawiki.org/wiki/Help:Formatting">MediaWiki markup</a>、 <a href="http://www.idpf.org/">EPUB</a> (v2またはv3)、<a href="http://www.fictionbook.org/index.php/Eng:XML_Schema_Fictionbook_2.1">FictionBook2</a>、<a href="http://redcloth.org/textile">Textile</a>、<a href="http://developer.apple.com/DOCUMENTATION/Darwin/Reference/ManPages/man7/groff_man.7.html">groff man</a>ページ、 <a href="http://orgmode.org">Emacs Org-Mode</a>、<a href="http://www.methods.co.nz/asciidoc/">AsciiDoc</a>、 およびスライドショーの形式である<a href="http://www.w3.org/Talks/Tools/Slidy/">Slidy</a>、<a href="http://goessner.net/articles/slideous/">Slideous</a>、<a href="http://paulrouget.com/dzslides/">DZSlides</a>、<a href="http://lab.hakim.se/reveal-js/">reveal.js</a>、<a href="http://meyerweb.com/eric/tools/s5/">S5</a> HTMLスライドショー。</p>
 <p>Pandocによる拡張Markdown書式は以下を含みます：脚注、表、柔軟な順序付きリスト、 定義リスト、囲う形式のコードブロック、上付き文字、下付き文字、取り消し線、 タイトルブロック、目次の自動作成、LaTeX数式の埋め込み、引用、HTMLブロック要素のMarkdownへの埋め込み。 （これらの拡張については、以下の <a href="#pandocs-markdown">Pandocによる拡張Markdown</a> にて説明されます。 また、これらの拡張は入力および出力形式として<code>markdown_strict</code>を与えることで無効にできます。）</p>
 <p>正規表現による置換を使ってHTMLからMarkdownに変換する多くのツールに対して、 Pandocはモジュール式のデザインで構成されています。 Pandocは、与えられた形式のテキストを解析してHaskell Native形式に変換するReader、 およびHaskell Native形式をターゲットの出力形式に変換するWriterで構成されており、 これらは各々の入力・出力形式ごとに存在します。 つまり、入力または出力形式を追加するには、ReaderまたはWriterを追加するだけでよいのです。</p>
-<h2 id="pandoc-の使い方"><code>pandoc</code> の使い方</h2>
+<h2 id="tocAnchor-1-2-1"><code>pandoc</code> の使い方</h2>
 <p>入力ファイルとして<em>input-file</em>が指定されていない場合は、 入力として標準入力 <em>stdin</em> が指定されます。 <em>input-file</em>が指定されている場合は、それが入力として指定されます。 （ファイルを複数とることも可能です。）</p>
 <p>出力ファイルはデフォルトで標準出力 <em>stdout</em> に出力されます。 （ただし出力フォーマットが<code>odt</code>、<code>docx</code>、<code>epub</code>、<code>epub3</code>の場合は、 標準出力への出力が無効となります。） ファイルへ出力したい場合は、<code>-o</code>オプションを使用してください：</p>
-<pre><code>pandoc -o output.html input.txt</code></pre>
+<pre>
+   <code>pandoc -o output.html input.txt</code>
+</pre>
 <p>ファイルの代わりに、絶対パスのURIを指定することもできます。 この場合、PandocはHTTPを用いてコンテンツを取得します。</p>
-<pre><code>pandoc -f html -t markdown http://www.fsf.org</code></pre>
+<pre>
+   <code>pandoc -f html -t markdown http://www.fsf.org</code>
+</pre>
 <p>複数の<em>input-file</em>が指定されている場合、Pandocは解析の前に、 各入力ファイルを結合してその間に空行を挿入します。</p>
 <p>入力および出力フォーマットはオプションを用いて明示的に指定できます。 入力フォーマットは<code>-r/--read</code>または<code>-f/--from</code>により、 出力フォーマットは<code>-w/--write</code>または<code>-t/--to</code>により指定できます。 例えば、LaTeXファイルの<code>hello.txt</code>を入力とし、Markdownに出力する場合は、 以下のようなコマンドを作れるでしょう：</p>
-<pre><code>pandoc -f markdown -t latex hello.txt</code></pre>
+<pre>
+   <code>pandoc -f markdown -t latex hello.txt</code>
+</pre>
 <p>HTMLファイルの<code>hello.html</code>をMarkdownに変換する場合はこうです：</p>
-<pre><code>pandoc -f html -t markdown hello.html</code></pre>
+<pre>
+   <code>pandoc -f html -t markdown hello.html</code>
+</pre>
 <p>サポートされている出力フォーマットについては、後の<code>-t/--to</code>オプションの項で、 入力フォーマットについては、<code>-f/--from</code>オプションの項でリストアップします。 注意：<code>rst</code>、<code>textile</code>、<code>latex</code>、<code>html</code>のReaderはそれぞれのフォーマットを 完全にサポートしません。これらの文書の要素には、無視されるものがあります。</p>
 <p>入力または出力フォーマットが明示されていない場合、 Pandocはファイル名の拡張子から入力・出力フォーマットを推測しようとします。 例えば、このように、</p>
-<pre><code>pandoc -o hello.tex hello.txt</code></pre>
+<pre>
+   <code>pandoc -o hello.tex hello.txt</code>
+</pre>
 <p>は<code>hello.txt</code>をMarkdownからLaTeX形式に変換します。</p>
 <p>出力ファイルが指定されていない場合（この場合標準出力に出力されます）、 または出力ファイルの拡張子が不明な場合は、<code>-t/--to</code>オプションで明示しない限り、 出力フォーマットはデフォルトとしてHTMLが選ばれます。 入力ファイルが指定されていない場合（この場合は入力を標準入力から得ます）、 または入力ファイルの拡張子が不明な場合は、<code>-f/--from</code>オプションで明示しない限り、 入力フォーマットはMarkdownとして扱います。</p>
 <p>Pandocは入力・出力のデフォルトエンコーディングとしてUTF-8を採用しています。 UTF-8以外の文字コードを利用したい場合は、<code>iconv</code>などの文字コード変換ツールにより 入力や出力をパイプする必要があります：</p>
-<pre><code>iconv -t utf-8 input.txt | pandoc | iconv -f utf-8</code></pre>
-<h2 id="creating-a-pdf">PDFを作成する</h2>
+<pre>
+   <code>iconv -t utf-8 input.txt | pandoc | iconv -f utf-8</code>
+</pre>
+<h2 id="tocAnchor-1-2-2">PDFを作成する</h2>
 <p>初期のPandocは、PDF生成のためにPandocとpdfLaTeXを用いる <code>markdown2pdf</code> というプログラムとともに発展しました。 現在はPandoc自身がPDFを生成できるため、このプログラムは必要ありません。</p>
 <p>PDFを生成するには、単に出力ファイルの拡張子として <code>.pdf</code> を指定するだけです。 Pandocは内部でLaTeXファイルを作成し、それをpdfLaTeXを用いてPDFに変換します。 （他のLaTeXエンジンを利用するには、<code>--latex-engine</code>の項をご覧ください。）</p>
-<pre><code>pandoc test.txt -o test.pdf</code></pre>
+<pre>
+   <code>pandoc test.txt -o test.pdf</code>
+</pre>
 <p>（訳注：pdfLaTeXは日本語に対応していません。その代わりに、LuaLaTeXの利用を推奨します。 インストールやコマンドなどの詳細は以下のページをご覧ください。 <a href="http://qiita.com/sky_y/items/80bcd0f353ef5b8980ee">HTML - 多様なフォーマットに対応！ドキュメント変換ツールPandocを知ろう - Qiita</a> ）</p>
 <p>PDFの生成のためには、LaTeXエンジンがインストールされている必要があります （詳細は以下の <code>--latex-engine</code> の項をご覧ください）。 以下のLaTeXパッケージは有効であると見なされます： <code>amssymb</code>, <code>amsmath</code>, <code>ifxetex</code>, <code>ifluatex</code>, <code>listings</code> (<code>--listings</code>オプションが有効の場合), <code>fancyvrb</code>, <code>longtable</code>, <code>booktabs</code>, <code>url</code>, <code>graphicx</code>, <code>hyperref</code>, <code>ulem</code>, <code>babel</code> (<code>lang</code>オプションが有効の場合), <code>fontspec</code> (LaTeXエンジンとして<code>xelatex</code>または<code>lualatex</code>が指定されている場合), <code>xltxtra</code> and <code>xunicode</code> (LaTeXエンジンとして<code>xelatex</code>が指定されている場合).</p>
-<h2 id="hsmarkdown"><code>hsmarkdown</code></h2>
+<h2 id="tocAnchor-1-2-3">
+   <code>hsmarkdown</code>
+</h2>
 <p><code>Markdown.pl</code>の暫定的な置き換えとしてPandocを利用したいユーザは、 <code>pandoc</code>実行ファイルへのシンボリックリンクを<code>hsmarkdown</code>として利用することができます。 Pandocを<code>hsmarkdown</code>として呼びだした場合、 Pandocはオプション <code>-f markdown_strict --email-obfuscation=references</code> が指定されたものとして呼びだされ、 全てのコマンドラインオプションは通常の引数として取り扱われます。 ただし、Cygwinの下ではシンボリックリンクのシミュレーションの問題により、この方法では動作しません。</p>
-<h1 id="オプション">オプション</h1>
-<h2 id="general-options">一般的なオプション</h2>
-<dl>
-<dt><code>-f</code> <em>FORMAT</em>, <code>-r</code> <em>FORMAT</em>, <code>--from=</code><em>FORMAT</em>, <code>--read=</code><em>FORMAT</em></dt>
+<h1 id="tocAnchor-1-6">オプション</h1>
+<h2 id="tocAnchor-1-6-1">一般的なオプション</h2>
+<dl><dt><code>-f</code> <em>FORMAT</em>, <code>-r</code> <em>FORMAT</em>, <code>--from=</code><em>FORMAT</em>, <code>--read=</code><em>FORMAT</em></dt>
 <dd><p>入力フォーマットを指定します。<em>FORMAT</em> として指定できるのは以下のフォーマットです： <code>native</code> (Native Haskell; Haskellで読み込める形式のデータ構造), <code>json</code> (ネイティブASTのJSONバージョン), <code>markdown</code> (Pandocによる拡張Markdown), <code>markdown_strict</code> (オリジナルの拡張されていないMarkdown), <code>markdown_phpextra</code> (PHP Markdown Extraによる拡張Markdown), <code>markdown_github</code> (GitHubによる拡張Markdown), <code>textile</code> (Textile), <code>rst</code> (reStructuredText), <code>html</code> (HTML), <code>docbook</code> (DocBook), <code>opml</code> (OPML), <code>mediawiki</code> (MediaWikiマークアップ), <code>haddock</code> (Haddockマークアップ), <code>latex</code> (LaTeX)。 <code>+lhs</code> をフォーマット <code>markdown</code>, <code>rst</code>, <code>latex</code>, <code>html</code> の後ろにつけ加えた場合、 その入力はLiterate Haskellのソースコードとして扱われます （詳細は下記の<a href="#literate-haskell-support">Literate Haskellのサポート</a>を参照）。 Markdownの拡張文法は、フォーマットの末尾に<code>+EXTENSION</code>または<code>-EXTENSION</code>をつけ加えることで それぞれ有効・無効を切り替えられます。 例えば、<code>markdown_strict+footnotes+definition_lists</code>は、 <code>markdown_strict</code>をベースにして脚注と定義リストを有効にしたもの、という意味になります。 同様に、<code>markdown-pipe_tables+hard_line_breaks</code>は、 PandocのMarkdownからパイプテーブルを無効にし強制改行を有効にしたもの、という意味です。 拡張とその名前の詳細については、下記の<a href="#pandocs-markdown">Pandocによる拡張Markdown</a>をご覧ください。</p>
 </dd>
 <dt><code>-t</code> <em>FORMAT</em>, <code>-w</code> <em>FORMAT</em>, <code>--to=</code><em>FORMAT</em>, <code>--write=</code><em>FORMAT</em></dt>
@@ -121,10 +304,8 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
 <dt><code>-h</code>, <code>--help</code></dt>
 <dd><p>使用方法を表示します。</p>
 </dd>
-</dl>
-<h2 id="reader-options">Readerのオプション</h2>
-<dl>
-<dt><code>-R</code>, <code>--parse-raw</code></dt>
+</dl><h2 id="tocAnchor-1-6-2">Readerのオプション</h2>
+<dl><dt><code>-R</code>, <code>--parse-raw</code></dt>
 <dd><p>解釈できないHTMLコードまたはLaTeX環境を無視する代わりに、 生(raw)のHTMLまたはLaTeXソースとしてそのまま出力します。 このオプションはHTMLまたはLaTeXソースの入力時のみに影響します。 生のHTMLは出力がMarkdown, reStructuredText, HTML, Slidy, Slideous, DZSlides, reveal.js, S5の場合に表示され、 生のLaTeXは出力がMarkdown, reStructuredText, LaTeX, ConTeXtの場合に表示されます。 デフォルト動作では、Readerは解釈できないHTMLコードまたはLaTeX環境を無視します。 （LaTeX Readerは、たとえ<code>-R</code>が指定されていない場合でも、LaTeX <em>コマンド</em> をそのまま出力します。）</p>
 </dd>
 <dt><code>-S</code>, <code>--smart</code></dt>
@@ -148,7 +329,7 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
 <p>は以下と等価です：</p>
 <pre><code>pandoc -t json | ./caps.py latex | pandoc -f json -t latex</code></pre>
 <p>後者のコマンド形式はフィルタをデバッグする際に有用です。</p>
-<p>フィルタは任意の言語で書くことができます。Haskellでは<code>Text.Pandoc.JSON</code>は<code>toJSONFilter</code>をエクスポートし、Haskellでフィルタを書くことを容易にします。 Pythonでフィルタを書きたい方は、モジュール<code>pandocfilters</code>をPyPIからインストールできます。このモジュールといくつかの例については、<http://github.com/jgm/pandocfilters>をご覧ください。 注意：Pandocは実行ファイル<em>EXECUTABLE</em>をユーザの環境変数<code>PATH</code>から見つけますが、ディレクトリ名を明示していない場合、カレントディレクトリにある実行ファイルは無視されます。 カレントディレクトリにあるスクリプトをフィルタとして実行したい場合は、そのスクリプト名の前に <code>./</code> を付けて下さい。</p>
+<p>フィルタは任意の言語で書くことができます。Haskellでは<code>Text.Pandoc.JSON</code>は<code>toJSONFilter</code>をエクスポートし、Haskellでフィルタを書くことを容易にします。 Pythonでフィルタを書きたい方は、モジュール<code>pandocfilters</code>をPyPIからインストールできます。このモジュールといくつかの例については、<http:>をご覧ください。 注意：Pandocは実行ファイル<em>EXECUTABLE</em>をユーザの環境変数<code>PATH</code>から見つけますが、ディレクトリ名を明示していない場合、カレントディレクトリにある実行ファイルは無視されます。 カレントディレクトリにあるスクリプトをフィルタとして実行したい場合は、そのスクリプト名の前に <code>./</code> を付けて下さい。</http:></p>
 </dd>
 <dt><code>-M</code> <em>KEY[=VAL]</em>, <code>--metadata=</code><em>KEY[:VAL]</em></dt>
 <dd><p>メタデータとしてフィールド <em>KEY</em> に対し値 <em>VAL</em> をセットします。コマンドラインで指定された値は文書中の値を上書きします。 値はYAMLのbooleanまたはstring値として解釈されます。値 <em>VAL</em> が指定されてない場合、その値はboolean値の<code>true</code>として見なされます。 <code>--variable</code>や<code>--metadata</code>のようなオプションにより、テンプレート変数がセットされます。 しかし、<code>--variable</code>とは違い、<code>--metadata</code>はその文書に内在するメタデータへ影響を与えます（このメタデータはフィルタからアクセス可能であり、ある出力フォーマットでは表示されることがあります）。</p>
@@ -162,10 +343,8 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
 <dt><code>--tab-stop=</code><em>NUMBER</em></dt>
 <dd><p>タブ文字をスペースに変換する際に、1つのタブ文字を何個のスペースで置換するかを指定します（デフォルト値は4）。</p>
 </dd>
-</dl>
-<h2 id="一般的なwriterオプション-general-writer-options">一般的なWriterオプション [general-writer-options]</h2>
-<dl>
-<dt><code>-s</code>, <code>--standalone</code></dt>
+</dl><h2 id="tocAnchor-1-6-3">一般的なWriterオプション [general-writer-options]</h2>
+<dl><dt><code>-s</code>, <code>--standalone</code></dt>
 <dd><p>スタンドアローンモード。適切なヘッダおよびフッタのついた出力を生成します。（言い換えると、この出力は断片ではなく、1つの完全で独立したHTML, LaTeX, およびRTFファイルです。） このオプションは出力フォーマットが<code>pdf</code>, <code>epub</code>, <code>epub3</code>, <code>fb2</code>, <code>docx</code>, <code>odt</code>の場合に自動的に付加されます。 訳注：このオプションは、Pandoc実行後にブラウザでHTMLファイルを表示させたり、LaTeXコマンドで直接ソースを処理したりする場合に必要となるでしょう。リッチテキストエディタでRTFファイルを扱う場合にはおそらく必須です。 逆に、例えばブログなどに使う用途で最低限のHTMLだけが必要な場合は、このオプションを付けない方が用途にふさわしいでしょう。</p>
 </dd>
 <dt><code>--template=</code><em>FILE</em></dt>
@@ -207,10 +386,8 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
 <dt><code>-A</code> <em>FILE</em>, <code>--include-after-body=</code><em>FILE</em></dt>
 <dd><p>文書本文(body)の末尾に、<em>FILE</em>の内容をそのままつけ加えます（具体的には、HTMLの<code>&lt;/body&gt;</code>タグの直前や、LaTeXの<code>\end{document}</code>の直前です）。 複数のファイルを含めるために、このオプションを複数回指定することができます。オプションを指定した順番通りに、出力ファイルの文書本文末尾へも追加されます。 このオプションにより、<code>--standalone</code>も暗黙に指定されます。</p>
 </dd>
-</dl>
-<h2 id="特定のwriterに影響を与えるオプション-options-affecting-specific-writers">特定のWriterに影響を与えるオプション [options-affecting-specific-writers]</h2>
-<dl>
-<dt><code>--self-contained</code></dt>
+</dl><h2 id="tocAnchor-1-6-4">特定のWriterに影響を与えるオプション [options-affecting-specific-writers]</h2>
+<dl><dt><code>--self-contained</code></dt>
 <dd><p>他のファイルに依存せず、単一ファイルで完結したHTMLを生成します。 リンクされたスクリプト、スタイルシート、画像および動画は、<code>data:</code> URIスキームを用いてHTMLファイル内に埋め込まれます。この出力ファイルは、一切の外部ファイルを必要とせず、ネットが繋がらない場所でも正しくブラウザで表示できるという意味では、自己完結した(self-contained)ファイルといえるでしょう。 このオプションはHTMLに関連した出力フォーマットに対して有効であり、具体的には<code>html</code>, <code>html5</code>, <code>html+lhs</code>, <code>html5+lhs</code>, <code>s5</code>, <code>slidy</code>, <code>slideous</code>, <code>dzslides</code>, <code>revealjs</code>で用いることができます。 絶対パスのURLで指定されたスクリプト、画像、スタイルシートはダウンロードされる一方で、相対パスのURLで指定されたそれらはまずカレントディレクトリから検索され、その後ユーザデータディレクトリから検索されます（<code>--data-dir</code>の節を参照）。最後に、Pandocのデフォルトデータディレクトリから検索されます。 なお、<code>--self-contained</code>は<code>--mathjax</code>オプションと併用することができません。</p>
 </dd>
 <dt><code>--offline</code></dt>
@@ -280,10 +457,10 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
 <dd><p>EPUBのカバー画像として指定された画像を用います。 画像は、縦と横が 1000px よりも小さいものを推奨します。 注意：Markdownのソースファイル中では、YAMLメタデータブロックの中で<code>cover-image</code>を指定することもできます（下記の<a href="#epub-metadata">EPUBメタデータ</a>を参照）。</p>
 </dd>
 <dt><code>--epub-metadata=</code><em>FILE</em></dt>
-<dd><p>EPUB出力の際に、指定されたEPUB用XMLメタデータを参照します。 このファイルには<http://dublincore.org/documents/dces/>に記載されているDublin Core要素が含まれている必要があります。 例：</p>
+<dd><p>EPUB出力の際に、指定されたEPUB用XMLメタデータを参照します。 このファイルには<http:></http:>に記載されているDublin Core要素が含まれている必要があります。 例：</p>
 <pre><code> &lt;dc:rights&gt;Creative Commons&lt;/dc:rights&gt;
  &lt;dc:language&gt;es-AR&lt;/dc:language&gt;</code></pre>
-<p>デフォルトでは、Pandocは以下のメタデータ要素を含みます： <code>&lt;dc:title&gt;</code> (文書のタイトルから取得), <code>&lt;dc:creator&gt;</code> (文書の著者名から取得), <code>&lt;dc:date&gt;</code> (文書の日付から取得, <a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601 format</a>に従う必要があります), <code>&lt;dc:language&gt;</code> (変数 <code>lang</code> から取得, 設定されていない場合はロケールから取得), <code>&lt;dc:identifier id=&quot;BookId&quot;&gt;</code> (ランダムに生成されたUUID).</p>
+<p>デフォルトでは、Pandocは以下のメタデータ要素を含みます： <code>&lt;dc:title&gt;</code> (文書のタイトルから取得), <code>&lt;dc:creator&gt;</code> (文書の著者名から取得), <code>&lt;dc:date&gt;</code> (文書の日付から取得, <a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601 format</a>に従う必要があります), <code>&lt;dc:language&gt;</code> (変数 <code>lang</code> から取得, 設定されていない場合はロケールから取得), <code>&lt;dc:identifier id="BookId"&gt;</code> (ランダムに生成されたUUID).</p>
 <p>注意：入力文書がMarkdownの場合、文書中のYAMLメタデータブロックが代わりに使用されます。詳しくは下記の<a href="#epub-metadata">EPUBメタデータ</a>を参照してください。</p>
 </dd>
 <dt><code>--epub-embed-font=</code><em>FILE</em></dt>
@@ -292,27 +469,27 @@ Pandocは Haskell で書かれたライブラリおよびコマンドライン�
 font-family: DejaVuSans;
 font-style: normal;
 font-weight: normal;
-src:url(&quot;DejaVuSans-Regular.ttf&quot;);
+src:url("DejaVuSans-Regular.ttf");
 }
 @font-face {
 font-family: DejaVuSans;
 font-style: normal;
 font-weight: bold;
-src:url(&quot;DejaVuSans-Bold.ttf&quot;);
+src:url("DejaVuSans-Bold.ttf");
 }
 @font-face {
 font-family: DejaVuSans;
 font-style: italic;
 font-weight: normal;
-src:url(&quot;DejaVuSans-Oblique.ttf&quot;);
+src:url("DejaVuSans-Oblique.ttf");
 }
 @font-face {
 font-family: DejaVuSans;
 font-style: italic;
 font-weight: bold;
-src:url(&quot;DejaVuSans-BoldOblique.ttf&quot;);
+src:url("DejaVuSans-BoldOblique.ttf");
 }
-body { font-family: &quot;DejaVuSans&quot;; }</code></pre>
+body { font-family: "DejaVuSans"; }</code></pre>
 </dd>
 <dt><code>--epub-chapter-level=</code><em>NUMBER</em></dt>
 <dd><p>EPUBファイルをいくつかの“chapter”（章）ファイルに分割するために、章に相当する見出しレベルを設定します。 デフォルトでは、レベル1の見出しを使って複数の章に分割します。 このオプションはEPUBファイルの内部構成に影響を与えるだけであり、ユーザに見せる章や節を制御するものではありません。 いくつかのEPUBリーダーでは、chapterファイルのサイズが大きすぎる場合、動作が遅くなることがあります。少数のレベル1見出しを持つ大きな文書を変換する場合には、このオプションを使って章の見出しレベルを2または3に設定したくなるかもしれません。</p>
@@ -320,10 +497,8 @@ body { font-family: &quot;DejaVuSans&quot;; }</code></pre>
 <dt><code>--latex-engine=</code><em>pdflatex|lualatex|xelatex</em></dt>
 <dd><p>PDFを出力する際に、指定したLaTeXエンジンを利用します。デフォルトは<code>pdflatex</code>です。指定したエンジンがPATHの中に存在しない場合は、そのエンジンのフルパスを指定することもできます。 訳注：日本語文書を処理する場合、特に理由が無ければ<code>lualatex</code>を利用するようにして下さい。</p>
 </dd>
-</dl>
-<h2 id="citation-rendering">引用文献の表示</h2>
-<dl>
-<dt><code>--bibliography=</code><em>FILE</em></dt>
+</dl><h2 id="tocAnchor-1-6-5">引用文献の表示</h2>
+<dl><dt><code>--bibliography=</code><em>FILE</em></dt>
 <dd><p>文書中のメタデータにおいて<code>bibliography</code>フィールドを<em>FILE</em>で上書きし、 <code>pandoc-citeproc</code>を用いて引用を処理します。（これは<code>--metadata bibliography=file --filter pandoc-citeproc</code>と等価です。） 訳注：<code>bibliography</code>フィールドはBibTeXファイル(.bib)などの引用文献ファイルを指定するために利用します。詳細は下記の<a href="#citations">文献の引用</a>をご覧ください。</p>
 </dd>
 <dt><code>--csl=</code><em>FILE</em></dt>
@@ -338,10 +513,8 @@ body { font-family: &quot;DejaVuSans&quot;; }</code></pre>
 <dt><code>--biblatex</code></dt>
 <dd><p>latex出力において、BibLaTeXを引用に利用します。</p>
 </dd>
-</dl>
-<h2 id="math-rendering-in-html">HTMLにおける数式の表示</h2>
-<dl>
-<dt><code>-m</code> [<em>URL</em>], <code>--latexmathml</code>[=<em>URL</em>]</dt>
+</dl><h2 id="tocAnchor-1-6-6">HTMLにおける数式の表示</h2>
+<dl><dt><code>-m</code> [<em>URL</em>], <code>--latexmathml</code>[=<em>URL</em>]</dt>
 <dd><p>HTML出力において、<a href="http://math.etsu.edu/LaTeXMathML/">LaTeXMathML</a>スクリプトを用いて埋め込まれたTeX数式を表示します。 ローカルの<code>LaTeXMathML.js</code>をリンクとして挿入したい場合は、<em>URL</em>を指定して下さい。 <em>URL</em>が指定されていない場合は、効率を犠牲にして可搬性を向上させるために、スクリプトの内容をHTMLヘッダに直接挿入します。 もし数式をいくつかのページに使うつもりであれば、スクリプトをリンクする方が良いでしょう（スクリプトがキャッシュされるため）。</p>
 </dd>
 <dt><code>--mathml</code>[=<em>URL</em>]</dt>
@@ -362,10 +535,8 @@ body { font-family: &quot;DejaVuSans&quot;; }</code></pre>
 <dt><code>--webtex</code>[=<em>URL</em>]</dt>
 <dd><p>TeX数式を外部スクリプトを用いて生成します。スクリプトはTeX数式を画像に変換するものに限ります。数式は指定されたURLで連結されます。<em>URL</em>が指定されていない場合は、Google Chart APIが使用されます。</p>
 </dd>
-</dl>
-<h2 id="options-for-wrapper-scripts">ラッパースクリプトのためのオプション</h2>
-<dl>
-<dt><code>--dump-args</code></dt>
+</dl><h2 id="tocAnchor-1-6-7">ラッパースクリプトのためのオプション</h2>
+<dl><dt><code>--dump-args</code></dt>
 <dd><p>コマンドライン引数に関する情報を標準出力<em>stdout</em>に出力し、終了します。 このオプションは主にラッパースクリプトで使用するためのものです。 出力の1行目は<code>-o</code>オプションで指定された出力ファイル名（出力ファイルを指定していない場合は標準出力の<code>-</code>）が表示されます。 残りの行は引数で指定した順番に、引数1つにつき1行ずつ出力します。 通常、標準のPandocオプションおよびその引数はこれらには含まれませんが、 セパレータ<code>--</code>の後ろに付け足したオプションおよび引数に関しては出力されます。</p>
 </dd>
 <dt><code>--ignore-args</code></dt>
@@ -374,19 +545,21 @@ body { font-family: &quot;DejaVuSans&quot;; }</code></pre>
 <p>は以下と等価です：</p>
 <pre><code>pandoc -o foo.html -s</code></pre>
 </dd>
-</dl>
-<h1 id="templates">テンプレート</h1>
+</dl><h1 id="tocAnchor-1-14">テンプレート</h1>
 <p><code>-s/--standalone</code>オプションを使用している場合、Pandocは完全で独立した文書を生成するために、ヘッダとフッタをつけ加えるためのテンプレートを使用します。 デフォルトテンプレートを見るには、以下を実行してください（ただし<code>FORMAT</code>は出力フォーマットの名前）：</p>
-<pre><code>pandoc -D FORMAT</code></pre>
+<pre>
+   <code>pandoc -D FORMAT</code>
+</pre>
 <p>カスタムテンプレートは<code>--template</code>オプションで指定することができます。 また、カスタムテンプレートをユーザデータディレクトリ（<code>--data-dir</code>を参照）の <code>templates/default.FORMAT</code>に置くことで、 与えられた出力フォーマット<code>FORMAT</code>に対するシステムのデフォルトテンプレートの代わりに使用することができます。 <em>例外</em>：<code>odt</code>出力については、<code>default.opendocument</code>を使用して下さい。また、<code>pdf</code>出力については、<code>default.latex</code>を使用して下さい。</p>
 <p>テンプレートには<em>変数</em>が含まれます。変数名は英数字、<code>-</code>および<code>_</code>の並びから成り、1文字目は英字です。変数名を<code>$</code>記号で囲むと、その値に置換されます。 例えば、以下のような<code>$title$</code>は</p>
-<pre><code>&lt;title&gt;$title$&lt;/title&gt;</code></pre>
+<pre>
+   <code>&lt;title&gt;$title$&lt;/title&gt;</code>
+</pre>
 <p>その文書のタイトルに置き換えられます。</p>
 <p>テンプレート内で<code>$</code>を文字通りに入力したい場合は、<code>$$</code>を使用して下さい。</p>
 <p>Some variables are set automatically by pandoc. These vary somewhat depending on the output format, but include metadata fields (such as <code>title</code>, <code>author</code>, and <code>date</code>) as well as the following:</p>
 <p>いくつかの変数はPandocによって自動的に設定されます。これらは出力フォーマットによって変化しますが、メタデータフィールド（<code>title</code>や<code>author</code>、<code>date</code>など）と同様に以下も含みます：</p>
-<dl>
-<dt><code>header-includes</code></dt>
+<dl><dt><code>header-includes</code></dt>
 <dd><p><code>-H/--include-in-header</code>によって指定されるコンテンツ（複数の値を取ることができます）</p>
 </dd>
 <dt><code>toc</code></dt>
@@ -467,27 +640,34 @@ body { font-family: &quot;DejaVuSans&quot;; }</code></pre>
 <dt><code>footer</code></dt>
 <dd><p>manページにおけるフッタ</p>
 </dd>
-</dl>
-<p>変数は<code>-V/--variable</code>オプションを使用することで、コマンドラインから設定することができます。 このように設定された変数は同名のメタデータフィールドを上書きします。</p>
+</dl><p>変数は<code>-V/--variable</code>オプションを使用することで、コマンドラインから設定することができます。 このように設定された変数は同名のメタデータフィールドを上書きします。</p>
 <p>テンプレートには条件分岐を含めることができます。文法は以下の通りです：</p>
-<pre><code>$if(variable)$
+<pre>
+   <code>$if(variable)$
 X
 $else$
 Y
-$endif$</code></pre>
+$endif$</code>
+</pre>
 <p>この場合、<code>variable</code>が非null値の場合に<code>X</code>を適用し、そうでない場合は<code>Y</code>を適用します。 <code>X</code>と<code>Y</code>は有効なテンプレートテキストのプレースホルダーであり、変数やその他の条件分岐を含むことができます。</p>
 <p>変数が複数の値からなる場合（例えば<code>author</code>が複数の著者の場合）、<code>$for$</code>キーワードを使用することができます：</p>
-<pre><code>$for(author)$
-&lt;meta name=&quot;author&quot; content=&quot;$author$&quot; /&gt;
-$endfor$</code></pre>
+<pre>
+   <code>$for(author)$
+&lt;meta name="author" content="$author$" /&gt;
+$endfor$</code>
+</pre>
 <p>また、連続したアイテムとアイテムの間に使用するセパレータをオプションとして指定することもできます：</p>
-<pre><code>$for(author)$$author$$sep$, $endfor$</code></pre>
+<pre>
+   <code>$for(author)$$author$$sep$, $endfor$</code>
+</pre>
 <p>ドット（<code>.</code>）はオブジェクト変数のフィールドを指定するのに使用できます。例えば：</p>
-<pre><code>$author.name$ ($author.affiliation$)</code></pre>
+<pre>
+   <code>$author.name$ ($author.affiliation$)</code>
+</pre>
 <p>カスタムテンプレートを使用する際には、Pandocのアップデートによる変更をそのテンプレートに反映させる必要があります。我々としては、デフォルトテンプレートの変更を追跡し、それに応じてあなたのカスタムテンプレートを変更することをお勧めします。これを行う簡単な方法として、pandoc-templatesリポジトリ(<a href="http://github.com/jgm/pandoc-templates">http://github.com/jgm/pandoc-templates</a>)をフォークし、新しいPandocがリリースされた後に変更をマージすることができます。</p>
-<h1 id="pandocによる拡張markdown-pandocs-markdown">Pandocによる拡張Markdown [pandocs-markdown]</h1>
+<h1 id="tocAnchor-1-15">Pandocによる拡張Markdown [pandocs-markdown]</h1>
 <p>Pandocは、拡張されわずかに改訂されたバージョンの、John Gruberによる<a href="http://daringfireball.net/projects/markdown/">markdown</a>の文法を解釈することができます。この文書ではその文法とともに、標準的なMarkdownとの差分を説明します。 注意として示したものを除いて、<code>markdown</code>フォーマットの代わりに<code>markdown_strict</code>を用いることでこれらの差分を無くした標準的なMarkdownを使用することができます。拡張部分は、<code>+EXTENSION</code>をフォーマット名につけ加えることで追加でき、<code>-EXTENSION</code>をつけ加えることで無効にすることができます。例えば、<code>markdown_strict+footnotes</code>は、厳密なMarkdownに加えて脚注機能を有効にします。一方で、<code>markdown-footnotes-pipe_tables</code>はPandoc拡張Markdownから脚注とパイプテーブル形式の表を無効にします。</p>
-<h2 id="philosophy">哲学</h2>
+<h2 id="tocAnchor-1-15-1">哲学</h2>
 <p>Markdownは文書を書きやすいように設計され、さらに重要なこととして、文書を読みやすいように設計されています。</p>
 <blockquote>
 <p>A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.</p>
@@ -495,180 +675,234 @@ $endfor$</code></pre>
 </blockquote>
 <p>この原則は、Pandocにおいて表、脚注やその他の拡張文法を設計する際の指針となっています。</p>
 <p>しかしながら、ある1つの点においてPandocの目指すものはオリジナル版のそれとは異なります。 Markdownは本来、HTMLを生成することを目的として設計されたのに対し、Pandocは複数の出力フォーマットに対応するように設計されています。つまり、Pandocは生の(raw)HTMLを埋め込むことを許可する一方でそれを推奨せず、その代わりに定義リストや表、数式、脚注のように、重要な文書要素をHTMLらしくない表現によって提供しています。</p>
-<h2 id="paragraphs">段落</h2>
+<h2 id="tocAnchor-1-15-2">段落</h2>
 <p>段落は1行以上のテキストと、それに続く1行以上の空行から成ります。 単なる改行はスペースとして扱われるので、段落を好きなように再構成するために使用できます。 強制改行が必要な場合は、行末に2個以上のスペースを置いてください。</p>
-<p><strong>拡張: <code>escaped_line_breaks</code></strong></p>
+<p>
+   <strong>拡張: <code>escaped_line_breaks</code></strong>
+</p>
 <p>改行のあとのバックスラッシュも強制改行になります。</p>
-<h2 id="headers">ヘッダ</h2>
+<h2 id="tocAnchor-1-15-3">ヘッダ</h2>
 <p>Setext形式とATX形式の2種類のヘッダ形式が使用できます。</p>
 <h3 id="setext形式のヘッダ">Setext形式のヘッダ</h3>
 <p>Setext形式のヘッダは「下線を引いた」テキストです。ヘッダのテキスト部分の下に、<code>=</code>記号（レベル1ヘッダ）または<code>-</code>記号（レベル2ヘッダ）を並べた行を置きます：</p>
-<pre><code>レベル1ヘッダ
+<pre>
+   <code>レベル1ヘッダ
 ============
 
 レベル2ヘッダ
-------------</code></pre>
+------------</code>
+</pre>
 <p>ヘッダのテキストは強調のようなインライン形式の修飾を含むことができます（下記の<a href="#inline-formatting">インライン形式の修飾</a>を参照）。</p>
 <h3 id="atx形式のヘッダ">ATX形式のヘッダ</h3>
 <p>ATX形式のヘッダは1〜6個の<code>#</code>記号および1行のテキストから成り、オプションで任意の数の<code>#</code>記号をその末尾につけることができます。先頭の<code>#</code>記号の数はヘッダレベルを表します：</p>
-<pre><code>## レベル2ヘッダ
+<pre>
+   <code>## レベル2ヘッダ
 
 ### レベル3ヘッダ ###
 
-### ヘッダの後ろにはいくらでも`#`を付けてもよい ######</code></pre>
+### ヘッダの後ろにはいくらでも`#`を付けてもよい ######</code>
+</pre>
 <p>Setext形式のヘッダと同様に、ヘッダにはテキスト修飾を含むことができます。</p>
-<pre><code># レベル1ヘッダと [リンク](/url) そして *強調*</code></pre>
-<p><strong>拡張: <code>blank_before_header</code></strong></p>
+<pre>
+   <code># レベル1ヘッダと [リンク](/url) そして *強調*</code>
+</pre>
+<p>
+   <strong>拡張: <code>blank_before_header</code></strong>
+</p>
 <p>標準的なMarkdown文法では「ヘッダの前に空行を入れる」という制約がありません。 Pandocではこの制約を付けています（もちろん、文書の先頭を除きます）。 なぜなら、<code>#</code>記号は行頭にうっかり付けてしまうことが多いからです（もしかすればエディタによる行の折り返しでもそうなるかもしれません）。以下の例を考えてみてください：</p>
-<pre><code>I like several of their flavors of ice cream:
-#22, for example, and #5.</code></pre>
+<pre>
+   <code>I like several of their flavors of ice cream:
+#22, for example, and #5.</code>
+</pre>
 <h3 id="header-identifiers-in-html-latex-and-context">HTML, LaTeX, そしてConTeXtにおけるヘッダ識別子</h3>
-<p><strong>拡張: <code>header_attributes</code></strong></p>
+<p>
+   <strong>拡張: <code>header_attributes</code></strong>
+</p>
 <p>ヘッダテキストを含む行の最後にこの文法を用いることで、ヘッダに属性(attribute)を付けることができます：</p>
-<pre><code>{#identifier .class .class key=value key=value}</code></pre>
+<pre>
+   <code>{#identifier .class .class key=value key=value}</code>
+</pre>
 <p>この文法によりクラスとキー/値の属性を付けることができますが、識別子のみが現在のところWriterに影響を与えます（そしてそれは一部のWriterのみです：HTML, LaTeX, ConTeXt, Textile, AsciiDoc）。つまり、例えば、以下のようなヘッダには<code>foo</code>という識別子が割り当てられます：</p>
-<pre><code># My header {#foo}
+<pre>
+   <code># My header {#foo}
 
 ## My header ##    {#foo}
 
 My other header   {#foo}
----------------</code></pre>
+---------------</code>
+</pre>
 <p>（この文法は<a href="http://michelf.ca/projects/php-markdown/extra/#table">PHP Markdown Extra</a>と互換性があります。）</p>
 <p><code>unnumbered</code>クラスを付けたヘッダには、たとえ<code>--number-sections</code>オプションが指定されていても番号が付きません。単一のハイフン(<code>-</code>)を属性として使うと<code>.unnumbered</code>と等価な意味になります（非英語圏の文書に適しています）。よって、</p>
-<pre><code># My header {-}</code></pre>
+<pre>
+   <code># My header {-}</code>
+</pre>
 <p>は以下と同じ意味になります：</p>
-<pre><code># My header {.unnumbered}</code></pre>
-<p><strong>拡張: <code>auto_identifiers</code></strong></p>
+<pre>
+   <code># My header {.unnumbered}</code>
+</pre>
+<p>
+   <strong>拡張: <code>auto_identifiers</code></strong>
+</p>
 <p>識別子を明示的に指定していないヘッダは、ヘッダのテキストを元にして自動的に識別子が割り当てられます。 ヘッダテキストから識別子を生成するために以下の処理を行います：</p>
-<ul>
-<li>全ての修飾やリンクなどを取り除く</li>
+<ul><li>全ての修飾やリンクなどを取り除く</li>
 <li>全ての脚注を取り除く</li>
 <li>アンダースコアやハイフン、ピリオド以外の全ての記号を取り除く</li>
 <li>全てのスペースと改行をハイフンに置換する</li>
 <li>全ての英字を小文字に置換する</li>
 <li>最初の英字より前にある文字を全て取り除く（識別子は数字や記号から始まってはならない）</li>
 <li>その結果何も残らなければ、識別子を<code>section</code>とする</li>
-</ul>
-<p>よって、例えば以下のようになります：</p>
+</ul><p>よって、例えば以下のようになります：</p>
 <table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ヘッダ</th>
+   <thead>
+      <tr class="header"><th style="text-align: left;">ヘッダ</th>
 <th style="text-align: center;">識別子</th>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Header identifiers in HTML</td>
+   </thead>
+   <tbody>
+      <tr class="odd"><td style="text-align: left;">Header identifiers in HTML</td>
 <td style="text-align: center;"><code>header-identifiers-in-html</code></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><em>Dogs</em>?–in <em>my</em> house?</td>
+      <tr class="even"><td style="text-align: left;"><em>Dogs</em>?–in <em>my</em> house?</td>
 <td style="text-align: center;"><code>dogs--in-my-house</code></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="http://www.w3.org/TR/html40/">HTML</a>, <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, or <a href="http://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>?</td>
+      <tr class="odd"><td style="text-align: left;"><a href="http://www.w3.org/TR/html40/">HTML</a>, <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, or <a href="http://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>?</td>
 <td style="text-align: center;"><code>html-s5-or-rtf</code></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">3. Applications</td>
+      <tr class="even"><td style="text-align: left;">3. Applications</td>
 <td style="text-align: center;"><code>applications</code></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">33</td>
+      <tr class="odd"><td style="text-align: left;">33</td>
 <td style="text-align: center;"><code>section</code></td>
 </tr>
-</tbody>
-</table>
-<p>訳注：ヘッダテキストが日本語の場合は、多くの場合、識別子も日本語テキストがそのまま割り当てられます。識別子が日本語の場合、HTMLやLaTeXなどで識別子が正しく動くかどうかは処理系に依存するため、ヘッダには英数字による識別子を明示的に与えることを推奨します。</p>
+   </tbody>
+</table><p>訳注：ヘッダテキストが日本語の場合は、多くの場合、識別子も日本語テキストがそのまま割り当てられます。識別子が日本語の場合、HTMLやLaTeXなどで識別子が正しく動くかどうかは処理系に依存するため、ヘッダには英数字による識別子を明示的に与えることを推奨します。</p>
 <p>これらのルールはほとんどの場合、1つのヘッダテキストから1つの識別子を決定できます。 例外としてはいくつかのヘッダが同じテキストである場合があり、この場合、最初のヘッダについては上記の通りに識別子が決まります。2番目のヘッダからは末尾に<code>-1</code>がついた識別子が得られ、3番目は<code>-2</code>がつき、以下同様です。</p>
 <p>これらの識別子は<code>--toc|--table-of-contents</code>オプションによって生成される目次におけるリンクターゲットを生成するのに使われます。これらはまた、文書中の1つの節から他へのリンクをより簡単にします。例えば、この節へのリンクは以下の通りになるでしょう（訳注：この節の原題は “Header identifiers in HTML, LaTeX, and ConTeXt” です）：</p>
-<pre><code>以下の節をご覧ください：
-[HTML, LaTeX, そしてConTeXtにおけるヘッダ識別子](#header-identifiers-in-html-latex-and-context).</code></pre>
+<pre>
+   <code>以下の節をご覧ください：
+[HTML, LaTeX, そしてConTeXtにおけるヘッダ識別子](#header-identifiers-in-html-latex-and-context).</code>
+</pre>
 <p>注意：節へのリンクを提供するこの方法は、HTML, LaTeX, ConTeXtフォーマットのみで有効です。</p>
 <p>HTMLフォーマットにおいて<code>--section-divs</code>オプションが指定されている場合は、各節が<code>div</code>（<code>--html5</code>が指定されている場合は<code>section</code>）で囲まれます。そしてその識別子はヘッダそのものとしてでなく、<code>&lt;div&gt;</code>タグ（または<code>&lt;section&gt;</code>タグ）の内部に埋め込まれます。これは節全体をJavaScriptで操作したり、CSSで扱ったりする際に使うことができます。</p>
-<p><strong>拡張: <code>implicit_header_references</code></strong></p>
+<p>
+   <strong>拡張: <code>implicit_header_references</code></strong>
+</p>
 <p>Pandocはそれぞれのヘッダに対し参照リンクが定義されているかのように振る舞います。よって、</p>
-<pre><code>[header identifiers](#header-identifiers-in-html)</code></pre>
+<pre>
+   <code>[header identifiers](#header-identifiers-in-html)</code>
+</pre>
 <p>の代わりに、下記のように</p>
-<pre><code>[header identifiers]</code></pre>
+<pre>
+   <code>[header identifiers]</code>
+</pre>
 <p>や</p>
-<pre><code>[header identifiers][]</code></pre>
+<pre>
+   <code>[header identifiers][]</code>
+</pre>
 <p>や</p>
-<pre><code>[the section on header identifiers][header identifiers]</code></pre>
+<pre>
+   <code>[the section on header identifiers][header identifiers]</code>
+</pre>
 <p>のように書くことができます。</p>
 <p>同一のテキストに対して複数のヘッダが存在する場合は、それらのうち最初のヘッダに対してリンクされます。 その他へのリンクについては、上記で説明したように、明示的なリンクとして書く必要があります。</p>
 <p>標準的な参照リンクとは違い、これらの参照は大文字・小文字を区別します。</p>
 <p>注意：あるヘッダに対して明示的に識別子を指定した場合は、暗黙の参照は無効になります。</p>
-<h2 id="block-quotations">引用</h2>
+<h2 id="tocAnchor-1-15-4">引用</h2>
 <p>Markdownはテキストの引用についてEメールの慣習を踏襲しています。 引用は各行が<code>&gt;</code>と1つのスペースから始まる、1つ以上の段落またはブロック要素（リストやヘッダなど）から成ります。 （<code>&gt;</code>は左端から始まる必要はありませんが、4つ以上のスペースでインデントされてはなりません。）</p>
-<pre><code>&gt; これは引用です。この
+<pre>
+   <code>&gt; これは引用です。この
 &gt; 段落は2行で構成されています。
 &gt;
 &gt; 1. これは引用内部にあるリストです。
-&gt; 2. 2つ目のアイテムです。</code></pre>
+&gt; 2. 2つ目のアイテムです。</code>
+</pre>
 <p>A “lazy” form, which requires the <code>&gt;</code> character only on the first line of each block, is also allowed:</p>
 <p>怠惰(lazy)な形、つまり<code>&gt;</code>が各ブロックの最初の行だけにある形も有効です：</p>
-<pre><code>&gt; これは引用です。この
+<pre>
+   <code>&gt; これは引用です。この
 段落は2行で構成されています。
 
 &gt; 1. これは引用内部にあるリストです。
-2. 2つ目のアイテムです。</code></pre>
+2. 2つ目のアイテムです。</code>
+</pre>
 <p>引用に含むことができるブロック要素として、他のブロック要素があります。すなわち、引用は入れ子（ネスト）にすることができます：</p>
-<pre><code>&gt; これは引用です。
+<pre>
+   <code>&gt; これは引用です。
 &gt;
-&gt; &gt; 引用の中の引用です。</code></pre>
-<p><strong>拡張: <code>blank_before_blockquote</code></strong></p>
+&gt; &gt; 引用の中の引用です。</code>
+</pre>
+<p>
+   <strong>拡張: <code>blank_before_blockquote</code></strong>
+</p>
 <p>標準的なMarkdown文法では「引用の前に空行を入れなければならない」という制約がありません。Pandocではこの制約を付けています（もちろん、文書の先頭は除きます）。なぜなら、<code>&gt;</code>記号は行頭にうっかり付けてしまうことが多いからです（もしかすればエディタによる行の折り返しでもそうなるかもしれません）。そのためPandocでは、<code>markdown_strict</code>フォーマットを使わない限りは、以下の例において入れ子の引用を生成しません：</p>
-<pre><code>&gt; これは引用です。
-&gt;&gt; 入れ子です。</code></pre>
-<h2 id="verbatim-code-blocks">コードブロック</h2>
+<pre>
+   <code>&gt; これは引用です。
+&gt;&gt; 入れ子です。</code>
+</pre>
+<h2 id="tocAnchor-1-15-5">コードブロック</h2>
 <h3 id="インデントによるコードブロック">インデントによるコードブロック</h3>
 <p>4つのスペース（または1つのタブ）でインデントされたテキストブロックは入力通りの出力(verbatim)、つまりコードブロックとして扱われます。具体的には、特別な文字が特別な整形や修飾を意味せず、全てのスペースや改行が保持されます。例えばこのような記法です：</p>
-<pre><code>    if (a &gt; 3) {
+<pre>
+   <code>    if (a &gt; 3) {
       moveShip(5 * gravity, DOWN);
-    }</code></pre>
+    }</code>
+</pre>
 <p>最初のインデント（4つのスペースまたは1つのタブ）はコードブロックとして扱われず、出力の際には削除されます。</p>
 <p>注意：コードブロックの空行は4つのスペースで始まる必要はありません。</p>
 <h3 id="囲まれたfencedコードブロック">囲まれた(fenced)コードブロック</h3>
-<p><strong>拡張: <code>fenced_code_blocks</code></strong></p>
+<p>
+   <strong>拡張: <code>fenced_code_blocks</code></strong>
+</p>
 <p>標準的なインデントコードブロックに加え、Pandocは<em>囲まれた(fenced)</em>コードブロックもサポートしています。これは3つ以上のチルダ(<code>~</code>)またはバックスラッシュ(<code>`</code>)の行で始まり、同じものの行で終わります。チルダやバックスラッシュの数は、始まりの行と終わりの行で同じでなければなりません。その2行の間に挟まる行はコードとして解釈されます。インデントは必要ありません：</p>
-<pre><code>~~~~~~~
+<pre>
+   <code>~~~~~~~
 if (a &gt; 3) {
   moveShip(5 * gravity, DOWN);
 }
-~~~~~~~</code></pre>
+~~~~~~~</code>
+</pre>
 <p>標準的なコードブロックと同様に、囲まれたコードブロックも空行で囲まれている必要があります。</p>
 <p>コード自身にチルダまたはバックスラッシュが含まれている場合は、より長いチルダまたはバックスラッシュの行で囲んでください：</p>
-<pre><code>~~~~~~~~~~~~~~~~
+<pre>
+   <code>~~~~~~~~~~~~~~~~
 ~~~~~~~~~~
 チルダの入ったコード
 ~~~~~~~~~~
-~~~~~~~~~~~~~~~~</code></pre>
+~~~~~~~~~~~~~~~~</code>
+</pre>
 <p>オプションとして、コードブロックに対して以下のような文法を用いて属性を付けることができます：</p>
-<pre><code>~~~~ {#mycode .haskell .numberLines startFrom=&quot;100&quot;}
+<pre>
+   <code>~~~~ {#mycode .haskell .numberLines startFrom="100"}
 qsort []     = []
 qsort (x:xs) = qsort (filter (&lt; x) xs) ++ [x] ++
                qsort (filter (&gt;= x) xs)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code>
+</pre>
 <p>ここで<code>mycode</code>は識別子、<code>haskell</code>と<code>numberLines</code>はクラス、<code>startFrom</code>は値<code>100</code>の属性です。いくつかの出力フォーマットではこの情報をシンタックスハイライトに使います。現在のところ、HTMLおよびLaTeX出力フォーマットのみがこの情報を使います。シンタックスハイライトがサポートされている出力フォーマットおよび言語では、上記のコードブロックは色つきになり、行番号が付きます（どの言語がサポートされているかを知るには、<code>pandoc --version</code>を実行してください）。その他の表記として、上記のコードブロックは以下のようになります：</p>
-<pre><code>&lt;pre id=&quot;mycode&quot; class=&quot;haskell numberLines&quot; startFrom=&quot;100&quot;&gt;
+<pre>
+   <code>&lt;pre id="mycode" class="haskell numberLines" startFrom="100"&gt;
   &lt;code&gt;
   ...
   &lt;/code&gt;
-&lt;/pre&gt;</code></pre>
+&lt;/pre&gt;</code>
+</pre>
 <p>短縮形として、言語を指定するタイプのコードブロックも使用できます：</p>
-<pre><code>```haskell
+<pre>
+   <code>```haskell
 qsort [] = []
-```</code></pre>
+```</code>
+</pre>
 <p>これは下記と等価です：</p>
-<pre><code>``` {.haskell}
+<pre>
+   <code>``` {.haskell}
 qsort [] = []
-```</code></pre>
+```</code>
+</pre>
 <p>シンタックスハイライトを無効にするには<code>--no-highlight</code>オプションを使用してください。 シンタックスハイライトのスタイルを指定するには、<code>--highlight-style</code>オプションを使用してください。</p>
 <h3 id="訳注シンタックスハイライトが可能なプログラミング言語について-code-highlighting">訳注：シンタックスハイライトが可能なプログラミング言語について [code-highlighting]</h3>
 <p>Pandoc 1.12.2.1 においてシンタックスハイライトが可能なプログラミング言語は以下の通りです：</p>
-<pre><code>actionscript, ada, apache, asn1, asp, awk, bash, bibtex, boo, c, changelog,
+<pre>
+   <code>actionscript, ada, apache, asn1, asp, awk, bash, bibtex, boo, c, changelog,
 clojure, cmake, coffee, coldfusion, commonlisp, cpp, cs, css, curry, d,
 diff, djangotemplate, doxygen, doxygenlua, dtd, eiffel, email, erlang,
 fortran, fsharp, gnuassembler, go, haskell, haxe, html, ini, java, javadoc,
@@ -678,57 +912,75 @@ modula2, modula3, monobasic, nasm, noweb, objectivec, objectivecpp, ocaml,
 octave, pascal, perl, php, pike, postscript, prolog, python, r,
 relaxngcompact, rhtml, roff, ruby, rust, scala, scheme, sci, sed, sgml, sql,
 sqlmysql, sqlpostgresql, tcl, texinfo, verilog, vhdl, xml, xorg, xslt, xul,
-yacc, yaml</code></pre>
-<h2 id="line-blocks">ラインブロック</h2>
-<p><strong>拡張: <code>line_blocks</code></strong></p>
+yacc, yaml</code>
+</pre>
+<h2 id="tocAnchor-1-15-6">ラインブロック</h2>
+<p>
+   <strong>拡張: <code>line_blocks</code></strong>
+</p>
 <p>ラインブロックは縦線(<code>|</code>)と1つのスペースで始まる行を続けて並べたものです。 行の分割は出力にそのまま反映され、先頭のスペースもそのまま保持されます。各行はMarkdown記法で修飾されます。 この記法は詩（韻文）や住所を書く際に便利です。</p>
-<pre><code>| The limerick packs laughs anatomical
+<pre>
+   <code>| The limerick packs laughs anatomical
 | In space that is quite economical.
-|    But the good ones I&#39;ve seen
+|    But the good ones I've seen
 |    So seldom are clean
 | And the clean ones so seldom are comical
 
 | 200 Main St.
-| Berkeley, CA 94718</code></pre>
+| Berkeley, CA 94718</code>
+</pre>
 <p>行は必要であれば強制改行できますが、続きの行はスペースで始まる必要があります：</p>
-<pre><code>| The Right Honorable Most Venerable and Righteous Samuel L.
+<pre>
+   <code>| The Right Honorable Most Venerable and Righteous Samuel L.
   Constable, Jr.
 | 200 Main St.
-| Berkeley, CA 94718</code></pre>
+| Berkeley, CA 94718</code>
+</pre>
 <p>この文法は<a href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html">reStructuredText</a>から借りたものです。</p>
-<h2 id="lists">リスト</h2>
+<h2 id="tocAnchor-1-15-7">リスト</h2>
 <h3 id="記号付きリスト">記号付きリスト</h3>
 <p>記号付きリストは行頭に記号の付いたアイテムのリストです。記号付きリストのアイテムの行頭には記号(<code>*</code>, <code>+</code>, <code>-</code>のいずれか)を付けます。以下に例を示します：</p>
-<pre><code>* ひとつめ
+<pre>
+   <code>* ひとつめ
 * ふたつめ
-* みっつめ</code></pre>
+* みっつめ</code>
+</pre>
 <p>このリストは「コンパクト」なリストを生成します。もっと「緩い(loose)」リストが欲しい場合、つまり各アイテムが段落として整形されてほしい場合は、アイテムとアイテムの間に空行を置きましょう：</p>
-<pre><code>* ひとつめ
+<pre>
+   <code>* ひとつめ
 
 * ふたつめ
 
-* みっつめ</code></pre>
+* みっつめ</code>
+</pre>
 <p>行頭の記号は行頭に揃っている必要はなく、1〜3個のスペースによるインデントがあっても構いません。記号の後ろには必ずスペースを置く必要があります。</p>
 <p>リストのアイテムは後続の行が先頭の行（記号を除いたテキスト）に揃っていればベストです：</p>
-<pre><code>* これは最初の
+<pre>
+   <code>* これは最初の
   リストアイテムです。
-* そしてこれは二番目です。</code></pre>
+* そしてこれは二番目です。</code>
+</pre>
 <p>しかしMarkdownでは下記のような緩い(“lazy”)な形式でもOKです：</p>
-<pre><code>* これは最初の
+<pre>
+   <code>* これは最初の
 リストアイテムです。
-* そしてこれは二番目です。</code></pre>
+* そしてこれは二番目です。</code>
+</pre>
 <h3 id="the-four-space-rule">フォー・スペース・ルール</h3>
 <p>リストアイテムは複数の段落や他のブロックレベルのコンテンツを含むことができます。しかし、後続の段落の前には空行を置き、次に4つのスペース（または1つのタブ）を置く必要があります。このリストは最初の段落に残りの要素を揃えていればベストでしょう：</p>
-<pre><code>  * 最初の段落です。
+<pre>
+   <code>  * 最初の段落です。
 
     続きです。
 
   * 二番目の段落です。コードブロックは8つのスペースで
     インデントされている必要があります：
 
-        { code }</code></pre>
+        { code }</code>
+</pre>
 <p>リストのアイテムは他のリストを含むことができます。この場合、続く空行があってもなくても構いません。入れ子になったリストは4つのスペースまたは1つのタブでインデントされている必要があります：</p>
-<pre><code>* フルーツ
+<pre>
+   <code>* フルーツ
     + りんご
         - サンふじ
         - 紅玉
@@ -736,54 +988,76 @@ yacc, yaml</code></pre>
     + もも
 * 野菜
     + ブロッコリー
-    + セロリ</code></pre>
+    + セロリ</code>
+</pre>
 <p>上記で言及したように、Markdownではリストアイテムをちゃんとインデントする代わりに「緩く」書くことができます。 しかし、複数の段落やリストアイテム中の他のブロックがある場合は、そのアイテムの1行目はインデントされている必要があります。</p>
-<pre><code>+ ゆるいゆるいリスト
+<pre>
+   <code>+ ゆるいゆるいリスト
 アイテム。
 
 + もうひとつ。お行儀はよくないけど
 正しい文です。
 
     二番目のリストアイテムの、二番目の段落
-です。</code></pre>
+です。</code>
+</pre>
 <p><strong>注意</strong>: 連続する段落に対するフォー・スペース・ルールはオフィシャルの<a href="http://daringfireball.net/projects/markdown/syntax#list">markdown syntax guide</a>に由来しますが、その実装である<code>Markdown.pl</code>はそのガイドに従っていません。よって文書の作者が4つ未満のスペースでインデントされた、連続する段落を書いた場合、Pandocにおけるその振る舞いは<code>Markdown.pl</code>とは異なります。</p>
 <p>この<a href="http://daringfireball.net/projects/markdown/syntax#list">markdown syntax guide</a>ではフォー・スペース・ルールがリストアイテム内で<em>全ての</em>ブロックレベルのコンテンツに対して適用されるかどうかについては明示していません。ただ段落とコードブロックに対して言及しているのみです。しかしこのルールが全てのブロックレベルのコンテンツ（入れ子のリストを含む）に対して適用されることは暗に示されており、Pandocではそのように解釈しています。</p>
 <h3 id="ordered-lists">順序付きリスト</h3>
 <p>順序付きリストは記号付きリストのように働きますが、アイテムの先頭に記号ではなく番号が振られます。</p>
 <p>標準的なMarkdownでは、番号は10進の数字で、その後ろにピリオドと1つのスペースを付けます。 この番号自体は無視されるので、以下のリストと</p>
-<pre><code>1.  ひとつめ
+<pre>
+   <code>1.  ひとつめ
 2.  ふたつめ
-3.  みっつめ</code></pre>
+3.  みっつめ</code>
+</pre>
 <p>以下のリストの出力は全く同じです：</p>
-<pre><code>5.  ひとつめ
+<pre>
+   <code>5.  ひとつめ
 7.  ふたつめ
-1.  みっつめ</code></pre>
-<p><strong>拡張: <code>fancy_lists</code></strong></p>
+1.  みっつめ</code>
+</pre>
+<p>
+   <strong>拡張: <code>fancy_lists</code></strong>
+</p>
 <p>標準的なMarkdownとは違い、Pandocでは数字に加えて、大文字または小文字の英字、あるいはローマ数字を番号（リストマーカ）として使った順序付きリストを作ることができます。リストマーカは括弧で囲むか、その後ろに閉じ括弧またはピリオドを置くことができます。この部分とテキストは1つ以上のスペースで区切られている必要があり、リストマーカが大文字とピリオドで構成されている場合は、2つ以上のスペースで区切られる必要があります。<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <p><code>fancy_lists</code>拡張はまた、<code>#</code>を順序付きリストのマーカーとして数字の代わりに使用することができます：</p>
-<pre><code>#. ひとつめ
-#. ふたつめ</code></pre>
-<p><strong>拡張: <code>startnum</code></strong></p>
+<pre>
+   <code>#. ひとつめ
+#. ふたつめ</code>
+</pre>
+<p>
+   <strong>拡張: <code>startnum</code></strong>
+</p>
 <p>Pandocはリストマーカの型とその始まりの番号を認識し、出力の際には可能な限り保持します。つまり、下記の例では、番号が9から始まる閉じ括弧付き番号付きリストと、そのサブリストとして小文字のローマ数字付きリストを与えます：</p>
-<pre><code> 9)  Ninth
+<pre>
+   <code> 9)  Ninth
 10)  Tenth
 11)  Eleventh
        i. subone
       ii. subtwo
-     iii. subthree</code></pre>
+     iii. subthree</code>
+</pre>
 <p>Pandocは異なる型のリストマーカが使用される度に、新しいリストを開始します。よって、下記の例では3つのリストが生成されます：</p>
-<pre><code>(2) Two
+<pre>
+   <code>(2) Two
 (5) Three
 1.  Four
-*   Five</code></pre>
+*   Five</code>
+</pre>
 <p>デフォルトのリストマーカがお望みであれば、<code>#.</code>を使えます。</p>
-<pre><code>#.  one
+<pre>
+   <code>#.  one
 #.  two
-#.  three</code></pre>
+#.  three</code>
+</pre>
 <h3 id="definition-lists">定義リスト</h3>
-<p><strong>拡張: <code>definition_lists</code></strong></p>
+<p>
+   <strong>拡張: <code>definition_lists</code></strong>
+</p>
 <p>Pandocは定義リストをサポートします。この文法は<a href="http://michelf.ca/projects/php-markdown/extra/#table">PHP Markdown Extra</a>と<a href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html">reStructuredText</a>から着想を得たものです：<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
-<pre><code>用語1
+<pre>
+   <code>用語1
 
 :   定義1
 
@@ -793,54 +1067,70 @@ yacc, yaml</code></pre>
 
         { コード、定義2の一部 }
 
-    定義2の3つ目の段落。</code></pre>
+    定義2の3つ目の段落。</code>
+</pre>
 <p>各用語は1行に収まっている必要がありますが、空行をその後ろに続けることができます。その用語の後ろには、必ず1つ以上の定義を続ける必要があります。定義は1つのコロンまたはチルダで始めますが、1〜2個のスペースでインデントしても構いません。定義の本体（最初の行のうちコロン又はチルダの右側も含む）は4つのスペースでインデントするべきです。1つの用語は複数の定義を持つことができ、各定義は4つのスペース（または1つのタブ）によるインデントとともに、1つ以上のブロック要素（段落、コードブロック、リストなど）で構成できます。</p>
 <p>（上記の例で示したように）定義の後ろに空行を入れた場合、そのブロックは段落として解釈されます。いくつかの出力フォーマットでは、この空行は用語/定義のペアの間の空白よりも大きな意味を持つ場合があります。コンパクトな定義リストの場合、前の定義と次の用語の間に空行を作らないでください：</p>
-<pre><code>用語1
+<pre>
+   <code>用語1
   ~ 定義1
 用語2
   ~ 定義2a
-  ~ 定義2b</code></pre>
+  ~ 定義2b</code>
+</pre>
 <h3 id="numbered-example-lists">順序付き例示リスト</h3>
-<p><strong>拡張: <code>example_lists</code></strong></p>
+<p>
+   <strong>拡張: <code>example_lists</code></strong>
+</p>
 <p>特別なリストマーカ<code>@</code>は順序付きの例を順に列挙する場合に使用できます。1番目の<code>@</code>マーカ付きリストアイテムは番号’1’が振られ、2番目のアイテムは’2’となり、文書の最後まで以下同様になります。順序付き例示リストは1つのリストに収まっている必要はありません。<code>@</code>を使った新しいリストは最後に使ったリストの番号を引き継ぎます。例えば：</p>
-<pre><code>(@)  最初の例には番号(1)が付きます。
+<pre>
+   <code>(@)  最初の例には番号(1)が付きます。
 (@)  2番目の例には番号(2)が付きます。
 
 ここで例を説明。
 
-(@)  3番目の例には番号(3)が付きます。</code></pre>
+(@)  3番目の例には番号(3)が付きます。</code>
+</pre>
 <p>順序付き例示リストはラベルを付けることができ、文書中で参照することができます：</p>
-<pre><code>(@good)  This is a good example.
+<pre>
+   <code>(@good)  This is a good example.
 
-As (@good) illustrates, ...</code></pre>
+As (@good) illustrates, ...</code>
+</pre>
 <p>このラベルは英数字およびアンダースコア、ハイフンから成る文字列です。</p>
 <h3 id="compact-and-loose-lists">コンパクトなリスト、ルーズなリスト</h3>
 <p>Pandocは<code>Markdown.pl</code>とは違い、リストに関して「微妙な場合」で振るまいが異なります。以下の例を考えてみましょう：</p>
-<pre><code>+   ひとつめ
+<pre>
+   <code>+   ひとつめ
 +   ふたつめ：
     -   ほげ
     -   ふが
     -   ぴよ
 
-+   みっつめ</code></pre>
++   みっつめ</code>
+</pre>
 <p>Pandocはこれを「コンパクトなリスト」（「ひとつめ」「ふたつめ」「みっつめ」に対して<code>&lt;p&gt;</code>タグで囲まない）に変換します。一方、<code>Markdown.pl</code>では、「みっつめ」の周りに空行があるので、（「ひとつめ」を飛ばして）<code>&lt;p&gt;</code>タグを「ふたつめ」と「みっつめ」に付けます。Pandocは「もしテキストの下に空行があれば、そのテキストを1つの段落として扱う」という単純なルールに従います。「ふたつめ」の下には空行ではなくリストがあるため、「ふたつめ」は段落として扱いません。入れ子になっているリストの下に空行があるという事実は重要ではありません。（注意：Pandocは<code>markdown_strict</code>フォーマットが指定されているときでも、このように動作します。この振る舞いはオフィシャルのMarkdown文法の解説と矛盾しませんが、<code>Markdown.pl</code>の振る舞いとは異なります。）</p>
 <h3 id="ending-a-list">リストの終わり</h3>
 <p>では、インデントコードブロックをリストの後に置きたい場合はどうでしょうか？</p>
-<pre><code>-   ひとつめ
+<pre>
+   <code>-   ひとつめ
 -   ふたつめ
 
-    { コードブロック }</code></pre>
+    { コードブロック }</code>
+</pre>
 <p>困りました！ここでPandocでは（他のMarkdown実装のように）<code>{ コードブロック }</code>を、「ふたつめ」の2つ目の段落として解釈するため、コードブロックとして解釈されません。</p>
 <p>「ふたつめ」の後ろのコードブロックをそのリストから「切り離す」ために、インデントされていないコンテンツを挿入することができます。HTMLコメントのような、どのフォーマットでも目に見える出力がされないようなものがよいでしょう。</p>
-<pre><code>-   ひとつめ
+<pre>
+   <code>-   ひとつめ
 -   ふたつめ
 
 &lt;!-- リストの終わり --&gt;
 
-    { コードブロック }</code></pre>
+    { コードブロック }</code>
+</pre>
 <p>同様に、下記のように1つの大きなリストにするのではなく2つのリストに分けたいときも、同じ裏技が使用できます。</p>
-<pre><code>1.  ワン
+<pre>
+   <code>1.  ワン
 2.  ツー
 3.  スリー
 
@@ -848,79 +1138,93 @@ As (@good) illustrates, ...</code></pre>
 
 1.  アン
 2.  ドゥ
-3.  トロワ</code></pre>
-<h2 id="horizontal-rules">水平線</h2>
+3.  トロワ</code>
+</pre>
+<h2 id="tocAnchor-1-15-8">水平線</h2>
 <p>3つ以上の <code>*</code>, <code>-</code>, <code>_</code> から成る行は水平線になります（オプションでスペースを入れても構いません）。</p>
-<pre><code>*  *  *  *
+<pre>
+   <code>*  *  *  *
 
----------------</code></pre>
-<h2 id="tables">表</h2>
+---------------</code>
+</pre>
+<h2 id="tocAnchor-1-15-9">表</h2>
 <p>4種類の表（テーブル）が使用できます。最初の3種類はCourierのような等幅フォントの使用を前提とします。4種類目はプロポーショナルフォントの使用が可能で、列を左右・中央に寄せるために列のテキストを左右に移動する必要もありません。</p>
 <h3 id="シンプルテーブル">シンプルテーブル</h3>
-<p><strong>拡張: <code>simple_tables</code>, <code>table_captions</code></strong></p>
+<p>
+   <strong>拡張: <code>simple_tables</code>, <code>table_captions</code></strong>
+</p>
 <p>シンプルテーブルはこのように書けます：</p>
-<pre><code>  Right     Left     Center     Default
+<pre>
+   <code>  Right     Left     Center     Default
 -------     ------ ----------   -------
      12     12        12            12
     123     123       123          123
       1     1          1             1
 
-Table:  シンプルテーブルのデモ</code></pre>
+Table:  シンプルテーブルのデモ</code>
+</pre>
 <p>表のヘッダと行はそれぞれ1行に収まっている必要があります。列を左右・中央のどちらに寄せるかは、ヘッダの下にある’<code>-</code>’の線（以下、ヘッダ下線）に対するヘッダテキストの位置で決まります：<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
-<ul>
-<li>ヘッダ下線とヘッダテキストが右側で揃っており、ヘッダ下線が左側にはみ出している場合は、列は右寄せとなります。</li>
+<ul><li>ヘッダ下線とヘッダテキストが右側で揃っており、ヘッダ下線が左側にはみ出している場合は、列は右寄せとなります。</li>
 <li>ヘッダ下線とヘッダテキストが左側で揃っており、ヘッダ下線が右側にはみ出している場合は、列は左寄せとなります。</li>
 <li>ヘッダ下線がヘッダテキストに対して両側にはみ出している場合は、列は中央寄せとなります。</li>
 <li>ヘッダ下線とヘッダテキストの幅が等しい場合は、デフォルトの方法で列を寄せます（たいていの場合は左寄せとなります）。</li>
-</ul>
-<p>表は空行で終わっている必要があります。あるいは、’<code>-</code>’を並べた線の行の後に空行をつけ加えたもので終わることもできます。表題(caption)は上記の例で示したとおり、オプションで付けることができます。表題は<code>Table:</code>（または単に<code>:</code>）で始まる段落で、この<code>Table:</code>の部分は出力の際に取り除かれます。表題は表の前か後に付けることができます。</p>
+</ul><p>表は空行で終わっている必要があります。あるいは、’<code>-</code>’を並べた線の行の後に空行をつけ加えたもので終わることもできます。表題(caption)は上記の例で示したとおり、オプションで付けることができます。表題は<code>Table:</code>（または単に<code>:</code>）で始まる段落で、この<code>Table:</code>の部分は出力の際に取り除かれます。表題は表の前か後に付けることができます。</p>
 <p>列のヘッダは省略可能ですが、その場合は’<code>-</code>’の線を表の最後に付けてください。例を示します：</p>
-<pre><code>-------     ------ ----------   -------
+<pre>
+   <code>-------     ------ ----------   -------
      12     12        12             12
     123     123       123           123
       1     1          1              1
--------     ------ ----------   -------</code></pre>
+-------     ------ ----------   -------</code>
+</pre>
 <p>ヘッダが省略された場合は、列の寄せ方は表本体(body)の1行目がどう寄せられているかで決まります。つまり、上記の例では、列はそれぞれ右寄せ、左寄せ、中央寄せ、右寄せの順になります。</p>
 <h3 id="マルチラインテーブル">マルチラインテーブル</h3>
-<p><strong>拡張: <code>multiline_tables</code>, <code>table_captions</code></strong></p>
+<p>
+   <strong>拡張: <code>multiline_tables</code>, <code>table_captions</code></strong>
+</p>
 <p>マルチラインテーブルでは、表のヘッダと行のセル内部に複数の行を入れることができます（ただしセルの結合はサポートしていません）。例を示します：</p>
-<pre><code>-------------------------------------------------------------
+<pre>
+   <code>-------------------------------------------------------------
  Centered   Default           Right Left
   Header    Aligned         Aligned Aligned
 ----------- ------- --------------- -------------------------
    First    row                12.0 Example of a row that
                                     spans multiple lines.
 
-  Second    row                 5.0 Here&#39;s another one. Note
+  Second    row                 5.0 Here's another one. Note
                                     the blank line between
                                     rows.
 -------------------------------------------------------------
 
 Table: 表題がここに入ります。
-複数の行です。</code></pre>
+複数の行です。</code>
+</pre>
 <p>この表はシンプルテーブルと同様に働きますが、下記のような違いがあります：</p>
-<ul>
-<li>ヘッダテキストの前の行（1行目）は’<code>-</code>’を並べた線の行でなければならない（ただしヘッダが無い場合は除く）。</li>
+<ul><li>ヘッダテキストの前の行（1行目）は’<code>-</code>’を並べた線の行でなければならない（ただしヘッダが無い場合は除く）。</li>
 <li>最終行には’<code>-</code>’を並べた線の行と、それに続く空行を置かなければならない。</li>
 <li>それぞれの行は空行で区切られなければならない。</li>
-</ul>
-<p>マルチラインテーブルにおいて、PandocのReaderは列の幅をチェックしており、Writerはそれに応じて相対的に幅を調節して出力しようとします。よって、ある列が必要以上に狭く出力されてしまった場合は、Markdownのソースにてその列を広げてみてください。</p>
+</ul><p>マルチラインテーブルにおいて、PandocのReaderは列の幅をチェックしており、Writerはそれに応じて相対的に幅を調節して出力しようとします。よって、ある列が必要以上に狭く出力されてしまった場合は、Markdownのソースにてその列を広げてみてください。</p>
 <p>マルチラインテーブルでも、シンプルテーブルと同様にヘッダを省略することができます。</p>
-<pre><code>----------- ------- --------------- -------------------------
+<pre>
+   <code>----------- ------- --------------- -------------------------
    First    row                12.0 Example of a row that
                                     spans multiple lines.
 
-  Second    row                 5.0 Here&#39;s another one. Note
+  Second    row                 5.0 Here's another one. Note
                                     the blank line between
                                     rows.
 ----------- ------- --------------- -------------------------
 
-: ヘッダのないマルチラインテーブルです。</code></pre>
+: ヘッダのないマルチラインテーブルです。</code>
+</pre>
 <p>マルチラインテーブルでは1行だけを保持することができますが、その行の下には空行を入れるべきです（そして表の最後には’<code>-</code>’を並べた行を入れます）。そうしなければ、表がシンプルテーブルと解釈されてしまう場合があります。</p>
 <h3 id="グリッドテーブル">グリッドテーブル</h3>
-<p><strong>拡張: <code>grid_tables</code>, <code>table_captions</code></strong></p>
+<p>
+   <strong>拡張: <code>grid_tables</code>, <code>table_captions</code></strong>
+</p>
 <p>グリッドテーブルはこのような表です：</p>
-<pre><code>: グリッドテーブルのサンプル。
+<pre>
+   <code>: グリッドテーブルのサンプル。
 
 +---------------+---------------+--------------------+
 | 果物           | 値段          | 利点                |
@@ -930,74 +1234,102 @@ Table: 表題がここに入ります。
 +---------------+---------------+--------------------+
 | オレンジ       | $2.10         | - ビタミンCが豊富    |
 |               |               | - おいしい          |
-+---------------+---------------+--------------------+</code></pre>
++---------------+---------------+--------------------+</code>
+</pre>
 <p>’<code>=</code>’を並べた行はヘッダと表本体を分割しますが、ヘッダを省略したい場合には無くても構いません。グリッドテーブルのセルには任意のブロック要素（複数の段落、コードブロック、リストなど）を含めることができます。列の右寄せ・中央寄せやセルの結合はサポートされていません。グリッドテーブルは<a href="http://table.sourceforge.net/">Emacs table mode</a>を用いることで簡単に作成することができます。</p>
 <h3 id="パイプテーブル">パイプテーブル</h3>
-<p><strong>拡張: <code>pipe_tables</code>, <code>table_captions</code></strong></p>
+<p>
+   <strong>拡張: <code>pipe_tables</code>, <code>table_captions</code></strong>
+</p>
 <p>パイプテーブルは下記のような表です：</p>
-<pre><code>|右寄せ | 左寄せ|デフォルト|中央寄せ|
+<pre>
+   <code>|右寄せ | 左寄せ|デフォルト|中央寄せ|
 |------:|:-----|---------|:------:|
 |   12  |  12  |    12   |    12  |
 |  123  |  123 |   123   |   123  |
 |    1  |    1 |     1   |     1  |
 
-  : パイプテーブルのデモ</code></pre>
+  : パイプテーブルのデモ</code>
+</pre>
 <p>文法は<a href="http://michelf.ca/projects/php-markdown/extra/#table">PHP markdown extra</a>と同じです。始まりと終わりのパイプ文字(<code>|</code>)は無くても構いませんが、パイプは全ての列と列の間に挟む必要があります。コロンは列のテキストを寄せる方向を示します。ヘッダは省略可能ですが、列を寄せる方向を決めるために水平線の行は含めなければなりません。</p>
 <p>パイプは列の境界を示すため、上記の例で示したとおり、列自体はテキストを左右に寄せたりして整形する必要がありません。つまり、下記は全く正しい（が、汚い）パイプテーブルの例です：</p>
-<pre><code>果物| 値段
+<pre>
+   <code>果物| 値段
 -----|-----:
 りんご|2.05
 なし|1.37
-オレンジ|3.09</code></pre>
+オレンジ|3.09</code>
+</pre>
 <p>パイプテーブルのセルには段落やリストのようなブロック要素を含めることができず、セルに複数行を入れることもできません。</p>
 <p>メモ：Pandocは下記のような形式のパイプテーブルも認識できます。これはEmacsのorgtbl-modeで用いられるものです：</p>
-<pre><code>| 1つ目   | 2つ目 |
+<pre>
+   <code>| 1つ目   | 2つ目 |
 |---------+------|
 | この    | 表は  |
-| なかなか| よい  |</code></pre>
+| なかなか| よい  |</code>
+</pre>
 <p>違いは’<code>|</code>‘の代わりに’<code>+</code>’を使っている点です。他のorgtblの機能はサポートされていません。特に、デフォルトでない列テキストの寄せ方をする場合は、上記のようにコロンを付ける必要があります。</p>
-<h2 id="title-block">タイトルブロック</h2>
-<p><strong>拡張: <code>pandoc_title_block</code></strong></p>
+<h2 id="tocAnchor-1-15-10">タイトルブロック</h2>
+<p>
+   <strong>拡張: <code>pandoc_title_block</code></strong>
+</p>
 <p>ファイルがこのようなタイトルブロックで始まっている場合は、</p>
-<pre><code>% タイトル
+<pre>
+   <code>% タイトル
 % 著者 (複数の場合はセミコロンで区切る)
-% 日付</code></pre>
+% 日付</code>
+</pre>
 <p>これらは通常のテキストではなく文書の情報として認識されます。（例えば、スタンドアローンなLaTeXまたはHTMLのタイトルに使われます。）このブロックには「タイトルのみ」「タイトル、著者」「タイトル、著者、日付」のいずれかの組み合わせを含めることができます。もし「著者のみ」（タイトルなし）をブロックに含めたい倍は、空行を入れる必要があります：</p>
-<pre><code>%
+<pre>
+   <code>%
 % 著者
 
 % タイトル
 %
-% 2006年6月15日</code></pre>
+% 2006年6月15日</code>
+</pre>
 <p>タイトルには複数行を入れることができますが、2行目以降には次のようにテキストの前にスペースを入れる必要があります：</p>
-<pre><code>% 複数行の
-  タイトル</code></pre>
+<pre>
+   <code>% 複数行の
+  タイトル</code>
+</pre>
 <p>ドキュメントに複数の著者を含めたい場合は、複数行で書く（2行目以降の前にはスペースを入れる）か、セミコロンで区切るか、その両方で書くことができます。よって、下記の3つは全て等価です：</p>
-<pre><code>% 著者1
+<pre>
+   <code>% 著者1
   著者2
 
 % 著者1; 著者2
 
 % 著者1;
-  著者2</code></pre>
+  著者2</code>
+</pre>
 <p>日付は1行で書く必要があります。</p>
 <p>上記3つのメタデータフィールドには標準的なインライン形式の修飾（斜体、リンク、脚注など）を入れることができます。</p>
 <p>タイトルブロックは読み込み時において常に解釈されますが、<code>--standalone</code> (<code>-s</code>) オプションが選択されたときに限り、出力に影響を与えます。HTML出力においては、タイトルは2箇所に影響を与えます。1つ目は<code>&lt;head&gt;</code>タグ内部で、これはブラウザウィンドウの上部に表れるタイトルです。2つ目は<code>&lt;body&gt;</code>タグに入って最初の部分です。<code>&lt;head&gt;</code>タグ内部のタイトルについては、接頭辞を与えることができます（<code>--title-prefix</code>または<code>-T</code>オプション）。<code>&lt;body&gt;</code>タグに入ってすぐのタイトルは、class=“title”のH1要素として表れるので、CSSを用いて消去したり書式を変えたりすることができます。タイトルの接頭辞が<code>-T</code>によって指定され、タイトルブロックが文書中に無い場合は、タイトルの接頭辞そのものがHTMLのタイトルとして使用されます。</p>
 <p>manページのWriterはタイトル行からタイトル、manページのセクション番号、その他のヘッダ又はフッタ情報を取得します。このWriterはタイトル行の最初の単語(word)をタイトルとして解釈します。このタイトルは括弧に囲まれたセクション番号（1桁の数字）で終わることもできます。（タイトルと括弧の間にはスペースを入れてはなりません。）この後に足される全てのテキストは、追加のフッタ又はヘッダテキストと解釈されます。パイプ記号(<code>|</code>)はフッタとヘッダを区切るセパレータとなります。つまり、</p>
-<pre><code>% PANDOC(1)</code></pre>
+<pre>
+   <code>% PANDOC(1)</code>
+</pre>
 <p>は、タイトルが<code>PANDOC</code>でセクション1のmanページをもたらします。</p>
-<pre><code>% PANDOC(1) Pandoc User Manuals</code></pre>
+<pre>
+   <code>% PANDOC(1) Pandoc User Manuals</code>
+</pre>
 <p>は、上記に加え、“Pandoc User Manuals”をフッタに加えます。</p>
-<pre><code>% PANDOC(1) Pandoc User Manuals | Version 4.0</code></pre>
+<pre>
+   <code>% PANDOC(1) Pandoc User Manuals | Version 4.0</code>
+</pre>
 <p>は、上記に加え、“Version 4.0”をヘッダに加えます。</p>
-<h2 id="yaml-metadata-block">YAMLメタデータブロック</h2>
-<p><strong>拡張: <code>yaml_metadata_block</code></strong></p>
+<h2 id="tocAnchor-1-15-11">YAMLメタデータブロック</h2>
+<p>
+   <strong>拡張: <code>yaml_metadata_block</code></strong>
+</p>
 <p>YAMLメタデータブロックは正当なYAMLオブジェクトであり、最初の行が3つのハイフン(<code>---</code>)の行、最後の行が3つのハイフン(<code>---</code>)または3つのドット(<code>...</code>)であるブロックです。YAMLメタデータブロックは文書中の任意の場所に置くことができますが、先頭に置く場合を除いて、必ず空行の後にこのブロックを置く必要があります。</p>
 <p>メタデータはYAMLオブジェクトのフィールドから取得され、文書中の既存のメタデータに対して追加されます。メタデータにはリストやオブジェクトを含むことができます（適宜、入れ子にもできます）。しかし全ての文字列スカラ値はMarkdownとして解釈されます。アンダースコアで終わっている名前付きフィールドはPandocでは無視されます。（これらは外部の処理系によって与えられる場合があります。）</p>
 <p>1つの文書には複数のメタデータブロックを含むことができます。複数のメタデータフィールドは<em>left-biased union</em>ルールにより統合されます。つまり、2つのメタデータブロックが同じフィールドを定義しようとする場合、最初のブロックの値が採用されます。</p>
 <p>注意：YAMLのエスケープルールは以下の通りです。例えば、タイトルにコロンが含まれる場合は、引用符(<code>'</code>)で囲む必要があります。パイプ文字(<code>|</code>)はインデントブロックの始めに使うことができ、このブロックは（エスケープする必要がなく）文字通りに表示されます。この形式は空行をフィールドに含める際に必要となります：</p>
-<pre><code>---
-title:  &#39;これはタイトルです: コロンを含んでいます&#39;
+<pre>
+   <code>---
+title:  'これはタイトルです: コロンを含んでいます'
 author:
 - name: 著者1
   affiliation: どこかの大学
@@ -1008,12 +1340,16 @@ abstract: |
   これは概要です。
 
   2つの段落で構成されています。
-...</code></pre>
+...</code>
+</pre>
 <p>テンプレート変数にはメタデータからの値が自動的にセットされます。つまり、例えば、HTMLを書き出す場合、変数<code>abstract</code>はMarkdown中の<code>abstract</code>フィールドに等しいものがHTML文書にセットされます：</p>
-<pre><code>&lt;p&gt;これは概要です。&lt;/p&gt;
-&lt;p&gt;2つの段落で構成されています。&lt;/p&gt;</code></pre>
+<pre>
+   <code>&lt;p&gt;これは概要です。&lt;/p&gt;
+&lt;p&gt;2つの段落で構成されています。&lt;/p&gt;</code>
+</pre>
 <p>注意：上記の例はデフォルトテンプレートでは正しく動きません。このテンプレート中の変数<code>author</code>はシンプルなリストまたは文字列を仮定しており、その他の多くのテンプレートではそもそも変数<code>abstract</code>がありません。これらの変数を使うには、適切な変数を用いたカスタムテンプレートを使用する必要があるでしょう。例を示します：</p>
-<pre><code>$for(author)$
+<pre>
+   <code>$for(author)$
 $if(author.name)$
 $author.name$$if(author.affiliation)$ ($author.affiliation$)$endif$
 $else$
@@ -1023,64 +1359,106 @@ $endfor$
 
 $if(abstract)$
 Abstract: $abstract$
-$endif$</code></pre>
-<h2 id="バックスラッシュエスケープ-backslash-escapes">バックスラッシュ・エスケープ [backslash-escapes]</h2>
-<p><strong>拡張: <code>all_symbols_escapable</code></strong></p>
+$endif$</code>
+</pre>
+<h2 id="tocAnchor-1-15-12">バックスラッシュ・エスケープ [backslash-escapes]</h2>
+<p>
+   <strong>拡張: <code>all_symbols_escapable</code></strong>
+</p>
 <p>コードブロックやインサイドコードを除き、バックスラッシュの次にある任意の記号やスペース文字は、文字通りに扱われます。これはテキスト修飾を表す記号に対しても同様です。例えば、</p>
-<pre><code>*\*hello\**</code></pre>
+<pre>
+   <code>*\*hello\**</code>
+</pre>
 <p>は下記と等価であり、</p>
-<pre><code>&lt;em&gt;*hello*&lt;/em&gt;</code></pre>
+<pre>
+   <code>&lt;em&gt;*hello*&lt;/em&gt;</code>
+</pre>
 <p>下記とは異なります：</p>
-<pre><code>&lt;strong&gt;hello&lt;/strong&gt;</code></pre>
+<pre>
+   <code>&lt;strong&gt;hello&lt;/strong&gt;</code>
+</pre>
 <p>このルールはMarkdownの標準ルールよりも覚えやすいものです。Markdownの標準ルールでは、下記の記号のみがバックスラッシュでエスケープできます：</p>
-<pre><code>\`*_{}[]()&gt;#+-.!</code></pre>
+<pre>
+   <code>\`*_{}[]()&gt;#+-.!</code>
+</pre>
 <p>（しかし、<code>markdown_strict</code>フォーマットが指定された場合は、Markdownの標準ルールが適用されます。）</p>
 <p>バックスラッシュでエスケープされたスペースは、改行を伴わないスペースとして解釈されます。これはTeXの出力では<code>~</code>として、HTMLやXMLでは<code>\&amp;#160;</code>または<code>\&amp;nbsp;</code>として表れます。</p>
 <p>バックスラッシュでエスケープされた改行（具体的には、行末に現れるバックスペース）は強制改行として解釈されます。これはTeXの出力では<code>\\</code>として、HTMLでは<code>&lt;br /&gt;</code>として表れます。この方法はMarkdownにおける「見えない改行」（強制改行を末尾のスペース2つで表す方法）のよい代替案として使えます。</p>
 <p>バックスペース・エスケープは、コードブロックやインラインコードなど文字通り(verbatim)に表す環境では機能しません。</p>
-<h2 id="スマートな記号-smart-punctuation">スマートな記号 [smart-punctuation]</h2>
-<p><strong>拡張</strong></p>
+<h2 id="tocAnchor-1-15-13">スマートな記号 [smart-punctuation]</h2>
+<p>
+   <strong>拡張</strong>
+</p>
 <p><code>--smart</code>オプションが指定された場合、Pandocはタイポグラフィ的に正しい出力を行います。つまり、直線状の引用符を曲がった引用符に、<code>---</code>をemダッシュ「<code>—</code>」に、<code>--</code>をenダッシュ「<code>–</code>」に、 <code>...</code>を3点リーダーに変換します。“Mr.”のようなある種の略記・略称に対しては、改行を伴わないスペースが挿入されます。</p>
 <p>注意：LaTeXのテンプレートで<code>csquotes</code>が使用されている場合、Pandocは自動的にこれを検出し、引用符のついたテキストには<code>\enquote{...}</code>が使用されます。</p>
-<h2 id="インライン形式の修飾-inline-formatting">インライン形式の修飾 [inline-formatting]</h2>
+<h2 id="tocAnchor-1-15-14">インライン形式の修飾 [inline-formatting]</h2>
 <h3 id="強調">強調</h3>
 <p>テキストを<em>強調</em>するには、下記のように<code>*</code>または<code>_</code>のペアで囲みます：</p>
-<pre><code>このテキストは _アンダースコアで強調されており_、そして
-これは *アスタリスクで強調されています*。</code></pre>
+<pre>
+   <code>このテキストは _アンダースコアで強調されており_、そして
+これは *アスタリスクで強調されています*。</code>
+</pre>
 <p>2重の<code>*</code>または<code>_</code>は<strong>強い強調</strong>をもたらします：</p>
-<pre><code>これは **強い強調** で、これは __アンダースコアで囲んだものです__。</code></pre>
+<pre>
+   <code>これは **強い強調** で、これは __アンダースコアで囲んだものです__。</code>
+</pre>
 <p>スペースで囲まれた<code>*</code>や<code>_</code>、およびバックスペースでエスケープされたものは強調扱いになりません：</p>
-<pre><code>これは * 強調されません *、そして \*これも同様です\*。</code></pre>
-<p><strong>拡張: <code>intraword_underscores</code></strong></p>
+<pre>
+   <code>これは * 強調されません *、そして \*これも同様です\*。</code>
+</pre>
+<p>
+   <strong>拡張: <code>intraword_underscores</code></strong>
+</p>
 <p><code>_</code>記号は時々、言葉や識別子の間に入ったりするので、Pandocでは英数字に囲まれた<code>_</code>を強調記号として認識しません。単語の一部分を強調したい場合は、<code>*</code>を使用してください：</p>
-<pre><code>feas*ible*, not feas*able*.</code></pre>
+<pre>
+   <code>feas*ible*, not feas*able*.</code>
+</pre>
 <h3 id="取り消し線">取り消し線</h3>
-<p><strong>拡張: <code>strikeout</code></strong></p>
+<p>
+   <strong>拡張: <code>strikeout</code></strong>
+</p>
 <p>テキストに水平線の取り消し線をかける場合は、そのテキストを<code>~~</code>で囲んでください。例えば：</p>
-<pre><code>これは ~~削除されたテキストです。~~</code></pre>
+<pre>
+   <code>これは ~~削除されたテキストです。~~</code>
+</pre>
 <h3 id="上付き文字と下付き文字">上付き文字と下付き文字</h3>
-<p><strong>拡張: <code>superscript</code>, <code>subscript</code></strong></p>
+<p>
+   <strong>拡張: <code>superscript</code>, <code>subscript</code></strong>
+</p>
 <p>あるテキストを上付き文字にするには、テキストを<code>^</code>で囲んでください。同様に下付き文字にするには、テキストを<code>~</code>で囲んでください。例えば：</p>
-<pre><code>H~2~O は液体です。2^10^ は 1024 です。</code></pre>
+<pre>
+   <code>H~2~O は液体です。2^10^ は 1024 です。</code>
+</pre>
 <p>上付き文字または下付き文字にスペースが含まれる場合、このスペースはバックスラッシュでエスケープする必要があります。（これは、通常の<code>~</code>や<code>^</code>の使用によって、意図に反して上付き文字や下付き文字が適用されることを防ぎます。つまり、もし文字Pに対して’a cat’を下付き文字にしたい場合、<code>P~a cat~</code>ではなく、<code>P~a\ cat~</code>とする必要があります。）</p>
 <h3 id="文字通りの出力-verbatim-verbatim">文字通りの出力 (Verbatim) [verbatim]</h3>
 <p>短いブロックで文字通りの出力(verbatim)を得たい場合、バックスラッシュで囲みます：</p>
-<pre><code>`&gt;&gt;=`と`&gt;&gt;`の違いは何でしょうか？</code></pre>
+<pre>
+   <code>`&gt;&gt;=`と`&gt;&gt;`の違いは何でしょうか？</code>
+</pre>
 <p>もし文字通りの出力にバックスラッシュを含めたい場合は、2重のバックスラッシュを使います：</p>
-<pre><code>これは文字通りのバックスラッシュです： `` ` ``。</code></pre>
+<pre>
+   <code>これは文字通りのバックスラッシュです： `` ` ``。</code>
+</pre>
 <p>（開きバックスラッシュと閉じバックスラッシュの間のスペースは無視されます。）</p>
 <p>The general rule is that a verbatim span starts with a string of consecutive backticks (optionally followed by a space) and ends with a string of the same number of backticks (optionally preceded by a space).</p>
 <p>Note that backslash-escapes (and other markdown constructs) do not work in verbatim contexts:</p>
-<pre><code>This is a backslash followed by an asterisk: `\*`.</code></pre>
-<p><strong>Extension: <code>inline_code_attributes</code></strong></p>
+<pre>
+   <code>This is a backslash followed by an asterisk: `\*`.</code>
+</pre>
+<p>
+   <strong>Extension: <code>inline_code_attributes</code></strong>
+</p>
 <p>Attributes can be attached to verbatim text, just as with <a href="#fenced-code-blocks">fenced code blocks</a>:</p>
-<pre><code>`&lt;$&gt;`{.haskell}</code></pre>
-<h2 id="math">Math</h2>
-<p><strong>Extension: <code>tex_math_dollars</code></strong></p>
+<pre>
+   <code>`&lt;$&gt;`{.haskell}</code>
+</pre>
+<h2 id="tocAnchor-1-15-15">Math</h2>
+<p>
+   <strong>Extension: <code>tex_math_dollars</code></strong>
+</p>
 <p>Anything between two <code>$</code> characters will be treated as TeX math. The opening <code>$</code> must have a character immediately to its right, while the closing <code>$</code> must have a character immediately to its left. Thus, <code>$20,000 and $30,000</code> won’t parse as math. If for some reason you need to enclose text in literal <code>$</code> characters, backslash-escape them and they won’t be treated as math delimiters.</p>
 <p>TeX math will be printed in all output formats. How it is rendered depends on the output format:</p>
-<dl>
-<dt>Markdown, LaTeX, Org-Mode, ConTeXt</dt>
+<dl><dt>Markdown, LaTeX, Org-Mode, ConTeXt</dt>
 <dd><p>It will appear verbatim between <code>$</code> characters.</p>
 </dd>
 <dt>reStructuredText</dt>
@@ -1099,7 +1477,7 @@ $endif$</code></pre>
 <dd><p>It will be rendered inside <code>&lt;math&gt;</code> tags.</p>
 </dd>
 <dt>Textile</dt>
-<dd><p>It will be rendered inside <code>&lt;span class=&quot;math&quot;&gt;</code> tags.</p>
+<dd><p>It will be rendered inside <code>&lt;span class="math"&gt;</code> tags.</p>
 </dd>
 <dt>RTF, OpenDocument, ODT</dt>
 <dd><p>It will be rendered, if possible, using unicode characters, and will otherwise appear verbatim.</p>
@@ -1115,8 +1493,7 @@ $endif$</code></pre>
 </dd>
 <dt>HTML, Slidy, DZSlides, S5, EPUB</dt>
 <dd><p>The way math is rendered in HTML will depend on the command-line options selected:</p>
-<ol type="1">
-<li><p>The default is to render TeX math as far as possible using unicode characters, as with RTF, DocBook, and OpenDocument output. Formulas are put inside a <code>span</code> with <code>class=&quot;math&quot;</code>, so that they may be styled differently from the surrounding text if needed.</p></li>
+<ol type="1"><li><p>The default is to render TeX math as far as possible using unicode characters, as with RTF, DocBook, and OpenDocument output. Formulas are put inside a <code>span</code> with <code>class="math"</code>, so that they may be styled differently from the surrounding text if needed.</p></li>
 <li><p>If the <code>--latexmathml</code> option is used, TeX math will be displayed between <code>$</code> or <code>$$</code> characters and put in <code>&lt;span&gt;</code> tags with class <code>LaTeX</code>. The <a href="http://math.etsu.edu/LaTeXMathML/">LaTeXMathML</a> script will be used to render it as formulas. (This trick does not work in all browsers, but it works in Firefox. In browsers that do not support LaTeXMathML, TeX math will appear verbatim between <code>$</code> characters.)</p></li>
 <li><p>If the <code>--jsmath</code> option is used, TeX math will be put inside <code>&lt;span&gt;</code> tags (for inline math) or <code>&lt;div&gt;</code> tags (for display math) with class <code>math</code>. The <a href="http://www.math.union.edu/~dpvc/jsmath/">jsMath</a> script will be used to render it.</p></li>
 <li><p>If the <code>--mimetex</code> option is used, the <a href="http://www.forkosh.com/mimetex.html">mimeTeX</a> CGI script will be called to generate images for each TeX formula. This should work in all browsers. The <code>--mimetex</code> option takes an optional URL as argument. If no URL is specified, it will be assumed that the mimeTeX CGI script is at <code>/cgi-bin/mimetex.cgi</code>.</p></li>
@@ -1126,117 +1503,164 @@ gladtex -d myfile-images myfile.htex
 # produces myfile.html and images in myfile-images</code></pre></li>
 <li><p>If the <code>--webtex</code> option is used, TeX formulas will be converted to <code>&lt;img&gt;</code> tags that link to an external script that converts formulas to images. The formula will be URL-encoded and concatenated with the URL provided. If no URL is specified, the Google Chart API will be used (<code>http://chart.apis.google.com/chart?cht=tx&amp;chl=</code>).</p></li>
 <li><p>If the <code>--mathjax</code> option is used, TeX math will be displayed between <code>\(...\)</code> (for inline math) or <code>\[...\]</code> (for display math) and put in <code>&lt;span&gt;</code> tags with class <code>math</code>. The <a href="http://www.mathjax.org/">MathJax</a> script will be used to render it as formulas.</p></li>
-</ol>
-</dd>
-</dl>
-<h2 id="raw-html">Raw HTML</h2>
-<p><strong>Extension: <code>raw_html</code></strong></p>
+</ol></dd>
+</dl><h2 id="tocAnchor-1-15-16">Raw HTML</h2>
+<p>
+   <strong>Extension: <code>raw_html</code></strong>
+</p>
 <p>Markdown allows you to insert raw HTML (or DocBook) anywhere in a document (except verbatim contexts, where <code>&lt;</code>, <code>&gt;</code>, and <code>&amp;</code> are interpreted literally). (Techncially this is not an extension, since standard markdown allows it, but it has been made an extension so that it can be disabled if desired.)</p>
 <p>The raw HTML is passed through unchanged in HTML, S5, Slidy, Slideous, DZSlides, EPUB, Markdown, and Textile output, and suppressed in other formats.</p>
-<p><strong>Extension: <code>markdown_in_html_blocks</code></strong></p>
+<p>
+   <strong>Extension: <code>markdown_in_html_blocks</code></strong>
+</p>
 <p>Standard markdown allows you to include HTML “blocks”: blocks of HTML between balanced tags that are separated from the surrounding text with blank lines, and start and end at the left margin. Within these blocks, everything is interpreted as HTML, not markdown; so (for example), <code>*</code> does not signify emphasis.</p>
 <p>Pandoc behaves this way when the <code>markdown_strict</code> format is used; but by default, pandoc interprets material between HTML block tags as markdown. Thus, for example, Pandoc will turn</p>
-<pre><code>&lt;table&gt;
+<pre>
+   <code>&lt;table&gt;
     &lt;tr&gt;
         &lt;td&gt;*one*&lt;/td&gt;
         &lt;td&gt;[a link](http://google.com)&lt;/td&gt;
     &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
+&lt;/table&gt;</code>
+</pre>
 <p>into</p>
-<pre><code>&lt;table&gt;
+<pre>
+   <code>&lt;table&gt;
     &lt;tr&gt;
         &lt;td&gt;&lt;em&gt;one&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;&lt;a href=&quot;http://google.com&quot;&gt;a link&lt;/a&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;a href="http://google.com"&gt;a link&lt;/a&gt;&lt;/td&gt;
     &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
+&lt;/table&gt;</code>
+</pre>
 <p>whereas <code>Markdown.pl</code> will preserve it as is.</p>
 <p>There is one exception to this rule: text between <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags is not interpreted as markdown.</p>
 <p>This departure from standard markdown should make it easier to mix markdown with HTML block elements. For example, one can surround a block of markdown text with <code>&lt;div&gt;</code> tags without preventing it from being interpreted as markdown.</p>
-<h2 id="raw-tex">Raw TeX</h2>
-<p><strong>Extension: <code>raw_tex</code></strong></p>
+<h2 id="tocAnchor-1-15-17">Raw TeX</h2>
+<p>
+   <strong>Extension: <code>raw_tex</code></strong>
+</p>
 <p>In addition to raw HTML, pandoc allows raw LaTeX, TeX, and ConTeXt to be included in a document. Inline TeX commands will be preserved and passed unchanged to the LaTeX and ConTeXt writers. Thus, for example, you can use LaTeX to include BibTeX citations:</p>
-<pre><code>This result was proved in \cite{jones.1967}.</code></pre>
+<pre>
+   <code>This result was proved in \cite{jones.1967}.</code>
+</pre>
 <p>Note that in LaTeX environments, like</p>
-<pre><code>\begin{tabular}{|l|l|}\hline
+<pre>
+   <code>\begin{tabular}{|l|l|}\hline
 Age &amp; Frequency \\ \hline
 18--25  &amp; 15 \\
 26--35  &amp; 33 \\
 36--45  &amp; 22 \\ \hline
-\end{tabular}</code></pre>
+\end{tabular}</code>
+</pre>
 <p>the material between the begin and end tags will be interpreted as raw LaTeX, not as markdown.</p>
 <p>Inline LaTeX is ignored in output formats other than Markdown, LaTeX, and ConTeXt.</p>
-<h2 id="latex-macros">LaTeX macros</h2>
-<p><strong>Extension: <code>latex_macros</code></strong></p>
+<h2 id="tocAnchor-1-15-18">LaTeX macros</h2>
+<p>
+   <strong>Extension: <code>latex_macros</code></strong>
+</p>
 <p>For output formats other than LaTeX, pandoc will parse LaTeX <code>\newcommand</code> and <code>\renewcommand</code> definitions and apply the resulting macros to all LaTeX math. So, for example, the following will work in all output formats, not just LaTeX:</p>
-<pre><code>\newcommand{\tuple}[1]{\langle #1 \rangle}
+<pre>
+   <code>\newcommand{\tuple}[1]{\langle #1 \rangle}
 
-$\tuple{a, b, c}$</code></pre>
+$\tuple{a, b, c}$</code>
+</pre>
 <p>In LaTeX output, the <code>\newcommand</code> definition will simply be passed unchanged to the output.</p>
-<h2 id="links">リンク</h2>
+<h2 id="tocAnchor-1-15-19">リンク</h2>
 <p>Markdown allows links to be specified in several ways.</p>
 <h3 id="automatic-links">Automatic links</h3>
 <p>If you enclose a URL or email address in pointy brackets, it will become a link:</p>
-<pre><code>&lt;http://google.com&gt;
-&lt;sam@green.eggs.ham&gt;</code></pre>
+<pre>
+   <code>&lt;http://google.com&gt;
+&lt;sam@green.eggs.ham&gt;</code>
+</pre>
 <h3 id="inline-links">Inline links</h3>
 <p>An inline link consists of the link text in square brackets, followed by the URL in parentheses. (Optionally, the URL can be followed by a link title, in quotes.)</p>
-<pre><code>This is an [inline link](/url), and here&#39;s [one with
-a title](http://fsf.org &quot;click here for a good time!&quot;).</code></pre>
+<pre>
+   <code>This is an [inline link](/url), and here's [one with
+a title](http://fsf.org "click here for a good time!").</code>
+</pre>
 <p>There can be no space between the bracketed part and the parenthesized part. The link text can contain formatting (such as emphasis), but the title cannot.</p>
 <h3 id="reference-links">Reference links</h3>
 <p>An <em>explicit</em> reference link has two parts, the link itself and the link definition, which may occur elsewhere in the document (either before or after the link).</p>
 <p>The link consists of link text in square brackets, followed by a label in square brackets. (There can be space between the two.) The link definition consists of the bracketed label, followed by a colon and a space, followed by the URL, and optionally (after a space) a link title either in quotes or in parentheses.</p>
 <p>Here are some examples:</p>
-<pre><code>[my label 1]: /foo/bar.html  &quot;My title, optional&quot;
+<pre>
+   <code>[my label 1]: /foo/bar.html  "My title, optional"
 [my label 2]: /foo
 [my label 3]: http://fsf.org (The free software foundation)
-[my label 4]: /bar#special  &#39;A title in single quotes&#39;</code></pre>
+[my label 4]: /bar#special  'A title in single quotes'</code>
+</pre>
 <p>The URL may optionally be surrounded by angle brackets:</p>
-<pre><code>[my label 5]: &lt;http://foo.bar.baz&gt;</code></pre>
+<pre>
+   <code>[my label 5]: &lt;http://foo.bar.baz&gt;</code>
+</pre>
 <p>The title may go on the next line:</p>
-<pre><code>[my label 3]: http://fsf.org
-  &quot;The free software foundation&quot;</code></pre>
+<pre>
+   <code>[my label 3]: http://fsf.org
+  "The free software foundation"</code>
+</pre>
 <p>Note that link labels are not case sensitive. So, this will work:</p>
-<pre><code>Here is [my link][FOO]
+<pre>
+   <code>Here is [my link][FOO]
 
-[Foo]: /bar/baz</code></pre>
+[Foo]: /bar/baz</code>
+</pre>
 <p>In an <em>implicit</em> reference link, the second pair of brackets is empty, or omitted entirely:</p>
-<pre><code>See [my website][], or [my website].
+<pre>
+   <code>See [my website][], or [my website].
 
-[my website]: http://foo.bar.baz</code></pre>
+[my website]: http://foo.bar.baz</code>
+</pre>
 <p>Note: In <code>Markdown.pl</code> and most other markdown implementations, reference link definitions cannot occur in nested constructions such as list items or block quotes. Pandoc lifts this arbitrary seeming restriction. So the following is fine in pandoc, though not in most other implementations:</p>
-<pre><code>&gt; My block [quote].
+<pre>
+   <code>&gt; My block [quote].
 &gt;
-&gt; [quote]: /foo</code></pre>
+&gt; [quote]: /foo</code>
+</pre>
 <h3 id="internal-links">Internal links</h3>
 <p>To link to another section of the same document, use the automatically generated identifier (see <a href="#header-identifiers-in-html-latex-and-context">Header identifiers in HTML, LaTeX, and ConTeXt</a>, below). For example:</p>
-<pre><code>See the [Introduction](#introduction).</code></pre>
+<pre>
+   <code>See the [Introduction](#introduction).</code>
+</pre>
 <p>or</p>
-<pre><code>See the [Introduction].
+<pre>
+   <code>See the [Introduction].
 
-[Introduction]: #introduction</code></pre>
+[Introduction]: #introduction</code>
+</pre>
 <p>Internal links are currently supported for HTML formats (including HTML slide shows and EPUB), LaTeX, and ConTeXt.</p>
-<h2 id="images">Images</h2>
+<h2 id="tocAnchor-1-15-20">Images</h2>
 <p>A link immediately preceded by a <code>!</code> will be treated as an image. The link text will be used as the image’s alt text:</p>
-<pre><code>![la lune](lalune.jpg &quot;Voyage to the moon&quot;)
+<pre>
+   <code>![la lune](lalune.jpg "Voyage to the moon")
 
 ![movie reel]
 
-[movie reel]: movie.gif</code></pre>
+[movie reel]: movie.gif</code>
+</pre>
 <h3 id="pictures-with-captions">Pictures with captions</h3>
-<p><strong>Extension: <code>implicit_figures</code></strong></p>
+<p>
+   <strong>Extension: <code>implicit_figures</code></strong>
+</p>
 <p>An image occurring by itself in a paragraph will be rendered as a figure with a caption.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> (In LaTeX, a figure environment will be used; in HTML, the image will be placed in a <code>div</code> with class <code>figure</code>, together with a caption in a <code>p</code> with class <code>caption</code>.) The image’s alt text will be used as the caption.</p>
-<pre><code>![This is the caption](/url/of/image.png)</code></pre>
+<pre>
+   <code>![This is the caption](/url/of/image.png)</code>
+</pre>
 <p>If you just want a regular inline image, just make sure it is not the only thing in the paragraph. One way to do this is to insert a nonbreaking space after the image:</p>
-<pre><code>![This image won&#39;t be a figure](/url/of/image.png)\</code></pre>
-<h2 id="footnotes">Footnotes</h2>
-<p><strong>Extension: <code>footnotes</code></strong></p>
+<pre>
+   <code>![This image won't be a figure](/url/of/image.png)\</code>
+</pre>
+<h2 id="tocAnchor-1-15-21">Footnotes</h2>
+<p>
+   <strong>Extension: <code>footnotes</code></strong>
+</p>
 <p>Pandoc’s markdown allows footnotes, using the following syntax:</p>
-<pre><code>Here is a footnote reference,[^1] and another.[^longnote]
+<pre>
+   <code>Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
 
-[^longnote]: Here&#39;s one with multiple blocks.
+[^longnote]: Here's one with multiple blocks.
 
     Subsequent paragraphs are indented to show that they
 belong to the previous footnote.
@@ -1247,74 +1671,72 @@ belong to the previous footnote.
     line.  In this way, multi-paragraph footnotes work like
     multi-paragraph list items.
 
-This paragraph won&#39;t be part of the note, because it
-isn&#39;t indented.</code></pre>
+This paragraph won't be part of the note, because it
+isn't indented.</code>
+</pre>
 <p>The identifiers in footnote references may not contain spaces, tabs, or newlines. These identifiers are used only to correlate the footnote reference with the note itself; in the output, footnotes will be numbered sequentially.</p>
 <p>The footnotes themselves need not be placed at the end of the document. They may appear anywhere except inside other block elements (lists, block quotes, tables, etc.).</p>
-<p><strong>Extension: <code>inline_notes</code></strong></p>
+<p>
+   <strong>Extension: <code>inline_notes</code></strong>
+</p>
 <p>Inline footnotes are also allowed (though, unlike regular notes, they cannot contain multiple paragraphs). The syntax is as follows:</p>
-<pre><code>Here is an inline note.^[Inlines notes are easier to write, since
-you don&#39;t have to pick an identifier and move down to type the
-note.]</code></pre>
+<pre>
+   <code>Here is an inline note.^[Inlines notes are easier to write, since
+you don't have to pick an identifier and move down to type the
+note.]</code>
+</pre>
 <p>Inline and regular footnotes may be mixed freely.</p>
-<h2 id="citations">文献の引用</h2>
-<p><strong>Extension: <code>citations</code></strong></p>
+<h2 id="tocAnchor-1-15-22">文献の引用</h2>
+<p>
+   <strong>Extension: <code>citations</code></strong>
+</p>
 <p>Using an external filter, <code>pandoc-citeproc</code>, pandoc can automatically generate citations and a bibliography in a number of styles. Basic usage is</p>
-<pre><code>pandoc --filter pandoc-citeproc myinput.txt</code></pre>
+<pre>
+   <code>pandoc --filter pandoc-citeproc myinput.txt</code>
+</pre>
 <p>In order to use this feature, you will need to specify a bibliography file using the <code>bibliography</code> metadata field in a YAML metadata section. The bibliography may have any of these formats:</p>
 <table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Format</th>
+   <thead>
+      <tr class="header"><th style="text-align: left;">Format</th>
 <th style="text-align: left;">File extension</th>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">MODS</td>
+   </thead>
+   <tbody>
+      <tr class="odd"><td style="text-align: left;">MODS</td>
 <td style="text-align: left;">.mods</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">BibLaTeX</td>
+      <tr class="even"><td style="text-align: left;">BibLaTeX</td>
 <td style="text-align: left;">.bib</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">BibTeX</td>
+      <tr class="odd"><td style="text-align: left;">BibTeX</td>
 <td style="text-align: left;">.bibtex</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">RIS</td>
+      <tr class="even"><td style="text-align: left;">RIS</td>
 <td style="text-align: left;">.ris</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">EndNote</td>
+      <tr class="odd"><td style="text-align: left;">EndNote</td>
 <td style="text-align: left;">.enl</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">EndNote XML</td>
+      <tr class="even"><td style="text-align: left;">EndNote XML</td>
 <td style="text-align: left;">.xml</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">ISI</td>
+      <tr class="odd"><td style="text-align: left;">ISI</td>
 <td style="text-align: left;">.wos</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">MEDLINE</td>
+      <tr class="even"><td style="text-align: left;">MEDLINE</td>
 <td style="text-align: left;">.medline</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Copac</td>
+      <tr class="odd"><td style="text-align: left;">Copac</td>
 <td style="text-align: left;">.copac</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">JSON citeproc</td>
+      <tr class="even"><td style="text-align: left;">JSON citeproc</td>
 <td style="text-align: left;">.json</td>
 </tr>
-</tbody>
-</table>
-<p>Note that <code>.bib</code> can generally be used with both BibTeX and BibLaTeX files, but you can use <code>.bibtex</code> to force BibTeX.</p>
+   </tbody>
+</table><p>Note that <code>.bib</code> can generally be used with both BibTeX and BibLaTeX files, but you can use <code>.bibtex</code> to force BibTeX.</p>
 <p>Alternatively you can use a <code>references</code> field in the document’s YAML metadata. This should include an array of YAML-encoded references, for example:</p>
-<pre><code>---
+<pre>
+   <code>---
 references:
 - id: fenner2012a
   title: One-click science marketing
@@ -1323,7 +1745,7 @@ references:
     given: Martin
   container-title: Nature Materials
   volume: 11
-  URL: &#39;http://dx.doi.org/10.1038/nmat3283&#39;
+  URL: 'http://dx.doi.org/10.1038/nmat3283'
   DOI: 10.1038/nmat3283
   issue: 4
   publisher: Nature Publishing Group
@@ -1332,27 +1754,36 @@ references:
   issued:
     year: 2012
     month: 3
-...</code></pre>
+...</code>
+</pre>
 <p>(The program <code>mods2yaml</code>, which comes with <code>pandoc-citeproc</code>, can help produce these from a MODS reference collection.)</p>
 <p>By default, <code>pandoc-citeproc</code> will use a Chicago author-date format for citations and references. To use another style, you will need to specify a <a href="http://CitationStyles.org">CSL</a> 1.0 style file in the <code>csl</code> metadata field. A primer on creating and modifying CSL styles can be found at <a href="http://citationstyles.org/downloads/primer.html">http://citationstyles.org/downloads/primer.html</a>. A repository of CSL styles can be found at <a href="https://github.com/citation-style-language/styles">https://github.com/citation-style-language/styles</a>. See also <a href="http://zotero.org/styles">http://zotero.org/styles</a> for easy browsing.</p>
 <p>Citations go inside square brackets and are separated by semicolons. Each citation must have a key, composed of ‘@’ + the citation identifier from the database, and may optionally have a prefix, a locator, and a suffix. Here are some examples:</p>
-<pre><code>Blah blah [see @doe99, pp. 33-35; also @smith04, ch. 1].
+<pre>
+   <code>Blah blah [see @doe99, pp. 33-35; also @smith04, ch. 1].
 
 Blah blah [@doe99, pp. 33-35, 38-39 and *passim*].
 
-Blah blah [@smith04; @doe99].</code></pre>
+Blah blah [@smith04; @doe99].</code>
+</pre>
 <p>A minus sign (<code>-</code>) before the <code>@</code> will suppress mention of the author in the citation. This can be useful when the author is already mentioned in the text:</p>
-<pre><code>Smith says blah [-@smith04].</code></pre>
+<pre>
+   <code>Smith says blah [-@smith04].</code>
+</pre>
 <p>You can also write an in-text citation, as follows:</p>
-<pre><code>@smith04 says blah.
+<pre>
+   <code>@smith04 says blah.
 
-@smith04 [p. 33] says blah.</code></pre>
+@smith04 [p. 33] says blah.</code>
+</pre>
 <p>If the style calls for a list of works cited, it will be placed at the end of the document. Normally, you will want to end your document with an appropriate header:</p>
-<pre><code>last paragraph...
+<pre>
+   <code>last paragraph...
 
-# References</code></pre>
+# References</code>
+</pre>
 <p>The bibliography will be inserted after this header.</p>
-<h2 id="non-pandoc-extensions">Non-pandoc extensions</h2>
+<h2 id="tocAnchor-1-15-23">Non-pandoc extensions</h2>
 <p>The following markdown syntax extensions are not enabled by default in pandoc, but may be enabled by adding <code>+EXTENSION</code> to the format name, where <code>EXTENSION</code> is the name of the extension. Thus, for example, <code>markdown+hard_line_breaks</code> is markdown with hard line breaks.</p>
 <p><strong>Extension: <code>lists_without_preceding_blankline</code></strong><br />Allow a list to occur right after a paragraph, with no intervening blank space.</p>
 <p><strong>Extension: <code>hard_line_breaks</code></strong><br />Causes all newlines within a paragraph to be interpreted as hard line breaks instead of spaces.</p>
@@ -1361,23 +1792,26 @@ Blah blah [@smith04; @doe99].</code></pre>
 <p><strong>Extension: <code>tex_math_double_backslash</code></strong><br />Causes anything between <code>\\(</code> and <code>\\)</code> to be interpreted as inline TeX math, and anything between <code>\\[</code> and <code>\\]</code> to be interpreted as display TeX math.</p>
 <p><strong>Extension: <code>markdown_attribute</code></strong><br />By default, pandoc interprets material inside block-level tags as markdown. This extension changes the behavior so that markdown is only parsed inside block-level tags if the tags have the attribute <code>markdown=1</code>.</p>
 <p><strong>Extension: <code>mmd_title_block</code></strong><br />Enables a <a href="http://fletcherpenney.net/multimarkdown/">MultiMarkdown</a> style title block at the top of the document, for example:</p>
-<pre><code>Title:   My title
+<pre>
+   <code>Title:   My title
 Author:  John Doe
 Date:    September 1, 2008
 Comment: This is a sample mmd title block, with
-         a field spanning multiple lines.</code></pre>
+         a field spanning multiple lines.</code>
+</pre>
 <p>See the MultiMarkdown documentation for details. Note that only title, author, and date are recognized; other fields are simply ignored by pandoc. If <code>pandoc_title_block</code> or <code>yaml_metadata_block</code> is enabled, it will take precedence over <code>mmd_title_block</code>.</p>
 <p><strong>Extension: <code>abbreviations</code></strong><br />Parses PHP Markdown Extra abbreviation keys, like</p>
-<pre><code>*[HTML]: Hyper Text Markup Language</code></pre>
+<pre>
+   <code>*[HTML]: Hyper Text Markup Language</code>
+</pre>
 <p>Note that the pandoc document model does not support abbreviations, so if this extension is enabled, abbreviation keys are simply skipped (as opposed to being parsed as paragraphs).</p>
 <p><strong>Extension: <code>autolink_bare_uris</code></strong><br />Makes all absolute URIs into links, even when not surrounded by pointy braces <code>&lt;...&gt;</code>.</p>
 <p><strong>Extension: <code>ascii_identifiers</code></strong><br />Causes the identifiers produced by <code>auto_identifiers</code> to be pure ASCII. Accents are stripped off of accented latin letters, and non-latin letters are omitted.</p>
 <p><strong>Extension: <code>link_attributes</code></strong><br />Parses multimarkdown style key-value attributes on link and image references. Note that pandoc’s internal document model provides nowhere to put these, so they are presently just ignored.</p>
 <p><strong>Extension: <code>mmd_header_identifiers</code></strong><br />Parses multimarkdown style header identifiers (in square brackets, after the header but before any trailing <code>#</code>s in an ATX header).</p>
-<h2 id="markdown-variants">Markdown variants</h2>
+<h2 id="tocAnchor-1-15-24">Markdown variants</h2>
 <p>In addition to pandoc’s extended markdown, the following markdown variants are supported:</p>
-<dl>
-<dt><code>markdown_phpextra</code> (PHP Markdown Extra)</dt>
+<dl><dt><code>markdown_phpextra</code> (PHP Markdown Extra)</dt>
 <dd><p><code>footnotes</code>, <code>pipe_tables</code>, <code>raw_html</code>, <code>markdown_attribute</code>, <code>fenced_code_blocks</code>, <code>definition_lists</code>, <code>intraword_underscores</code>, <code>header_attributes</code>, <code>abbreviations</code>.</p>
 </dd>
 <dt><code>markdown_github</code> (Github-flavored Markdown)</dt>
@@ -1389,17 +1823,15 @@ Comment: This is a sample mmd title block, with
 <dt><code>markdown_strict</code> (Markdown.pl)</dt>
 <dd><p><code>raw_html</code></p>
 </dd>
-</dl>
-<h2 id="extensions-with-formats-other-than-markdown">Extensions with formats other than markdown</h2>
+</dl><h2 id="tocAnchor-1-15-25">Extensions with formats other than markdown</h2>
 <p>Some of the extensions discussed above can be used with formats other than markdown:</p>
-<ul>
-<li><p><code>auto_identifiers</code> can be used with <code>latex</code>, <code>rst</code>, <code>mediawiki</code>, and <code>textile</code> input (and is used by default).</p></li>
+<ul><li><p><code>auto_identifiers</code> can be used with <code>latex</code>, <code>rst</code>, <code>mediawiki</code>, and <code>textile</code> input (and is used by default).</p></li>
 <li><p><code>tex_math_dollars</code>, <code>tex_math_single_backslash</code>, and <code>tex_math_double_backslash</code> can be used with <code>html</code> input. (This is handy for reading web pages formatted using MathJax, for example.)</p></li>
-</ul>
-<h1 id="producing-slide-shows-with-pandoc">Producing slide shows with Pandoc</h1>
+</ul><h1 id="tocAnchor-1-41">Producing slide shows with Pandoc</h1>
 <p>You can use Pandoc to produce an HTML + javascript slide presentation that can be viewed via a web browser. There are five ways to do this, using <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, <a href="http://paulrouget.com/dzslides/">DZSlides</a>, <a href="http://www.w3.org/Talks/Tools/Slidy/">Slidy</a>, <a href="http://goessner.net/articles/slideous/">Slideous</a>, or <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>. You can also produce a PDF slide show using LaTeX <a href="http://www.tex.ac.uk/CTAN/macros/latex/contrib/beamer">beamer</a>.</p>
 <p>Here’s the markdown source for a simple slide show, <code>habits.txt</code>:</p>
-<pre><code>% Habits
+<pre>
+   <code>% Habits
 % John Doe
 % March 22, 2005
 
@@ -1429,64 +1861,80 @@ Comment: This is a sample mmd title block, with
 ## Going to sleep
 
 - Get in bed
-- Count sheep</code></pre>
+- Count sheep</code>
+</pre>
 <p>To produce an HTML/javascript slide show, simply type</p>
-<pre><code>pandoc -t FORMAT -s habits.txt -o habits.html</code></pre>
+<pre>
+   <code>pandoc -t FORMAT -s habits.txt -o habits.html</code>
+</pre>
 <p>where <code>FORMAT</code> is either <code>s5</code>, <code>slidy</code>, <code>slideous</code>, <code>dzslides</code>, or <code>revealjs</code>.</p>
 <p>For Slidy, Slideous, reveal.js, and S5, the file produced by pandoc with the <code>-s/--standalone</code> option embeds a link to javascripts and CSS files, which are assumed to be available at the relative path <code>s5/default</code> (for S5), <code>slideous</code> (for Slideous), <code>reveal.js</code> (for reveal.js), or at the Slidy website at <code>w3.org</code> (for Slidy). (These paths can be changed by setting the <code>slidy-url</code>, <code>slideous-url</code>, <code>revealjs-url</code>, or <code>s5-url</code> variables; see <code>--variable</code>, above.) For DZSlides, the (relatively short) javascript and css are included in the file by default.</p>
 <p>With all HTML slide formats, the <code>--self-contained</code> option can be used to produce a single file that contains all of the data necessary to display the slide show, including linked scripts, stylesheets, images, and videos.</p>
 <p>To produce a PDF slide show using beamer, type</p>
-<pre><code>pandoc -t beamer habits.txt -o habits.pdf</code></pre>
+<pre>
+   <code>pandoc -t beamer habits.txt -o habits.pdf</code>
+</pre>
 <p>Note that a reveal.js slide show can also be converted to a PDF by printing it to a file from the browser.</p>
-<h2 id="structuring-the-slide-show">スライドショーの構造を作る</h2>
+<h2 id="tocAnchor-1-41-1">スライドショーの構造を作る</h2>
 <p>By default, the <em>slide level</em> is the highest header level in the hierarchy that is followed immediately by content, and not another header, somewhere in the document. In the example above, level 1 headers are always followed by level 2 headers, which are followed by content, so 2 is the slide level. This default can be overridden using the <code>--slide-level</code> option.</p>
 <p>The document is carved up into slides according to the following rules:</p>
-<ul>
-<li><p>A horizontal rule always starts a new slide.</p></li>
+<ul><li><p>A horizontal rule always starts a new slide.</p></li>
 <li><p>A header at the slide level always starts a new slide.</p></li>
 <li><p>Headers <em>below</em> the slide level in the hierarchy create headers <em>within</em> a slide.</p></li>
 <li><p>Headers <em>above</em> the slide level in the hierarchy create “title slides,” which just contain the section title and help to break the slide show into sections.</p></li>
 <li><p>A title page is constructed automatically from the document’s title block, if present. (In the case of beamer, this can be disabled by commenting out some lines in the default template.)</p></li>
-</ul>
-<p>These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for all each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections, as in the example above.</p>
+</ul><p>These rules are designed to support many different styles of slide show. If you don’t care about structuring your slides into sections and subsections, you can just use level 1 headers for all each slide. (In that case, level 1 will be the slide level.) But you can also structure the slide show into sections, as in the example above.</p>
 <p>Note: in reveal.js slide shows, if slide level is 2, a two-dimensional layout will be produced, with level 1 headers building horizontally and level 2 headers building vertically. It is not recommended that you use deeper nesting of section levels with reveal.js.</p>
-<h2 id="incremental-lists">Incremental lists</h2>
+<h2 id="tocAnchor-1-41-2">Incremental lists</h2>
 <p>By default, these writers produces lists that display “all at once.” If you want your lists to display incrementally (one item at a time), use the <code>-i</code> option. If you want a particular list to depart from the default (that is, to display incrementally without the <code>-i</code> option and all at once with the <code>-i</code> option), put it in a block quote:</p>
-<pre><code>&gt; - Eat spaghetti
-&gt; - Drink wine</code></pre>
+<pre>
+   <code>&gt; - Eat spaghetti
+&gt; - Drink wine</code>
+</pre>
 <p>In this way incremental and nonincremental lists can be mixed in a single document.</p>
-<h2 id="inserting-pauses">Inserting pauses</h2>
+<h2 id="tocAnchor-1-41-3">Inserting pauses</h2>
 <p>You can add “pauses” within a slide by including a paragraph containing three dots, separated by spaces:</p>
-<pre><code># Slide with a pause
+<pre>
+   <code># Slide with a pause
 
 content before the pause
 
 . . .
 
-content after the pause</code></pre>
-<h2 id="styling-the-slides">Styling the slides</h2>
+content after the pause</code>
+</pre>
+<h2 id="tocAnchor-1-41-4">Styling the slides</h2>
 <p>You can change the style of HTML slides by putting customized CSS files in <code>$DATADIR/s5/default</code> (for S5), <code>$DATADIR/slidy</code> (for Slidy), or <code>$DATADIR/slideous</code> (for Slideous), where <code>$DATADIR</code> is the user data directory (see <code>--data-dir</code>, above). The originals may be found in pandoc’s system data directory (generally <code>$CABALDIR/pandoc-VERSION/s5/default</code>). Pandoc will look there for any files it does not find in the user data directory.</p>
 <p>For dzslides, the CSS is included in the HTML file itself, and may be modified there.</p>
 <p>For reveal.js, themes can be used by setting the <code>theme</code> variable, for example:</p>
-<pre><code>-V theme=moon</code></pre>
+<pre>
+   <code>-V theme=moon</code>
+</pre>
 <p>Or you can specify a custom stylesheet using the <code>--css</code> option.</p>
 <p>To style beamer slides, you can specify a beamer “theme” or “colortheme” using the <code>-V</code> option:</p>
-<pre><code>pandoc -t beamer habits.txt -V theme:Warsaw -o habits.pdf</code></pre>
+<pre>
+   <code>pandoc -t beamer habits.txt -V theme:Warsaw -o habits.pdf</code>
+</pre>
 <p>Note that header attributes will turn into slide attributes (on a <code>&lt;div&gt;</code> or <code>&lt;section&gt;</code>) in HTML slide formats, allowing you to style individual slides. In Beamer, the only header attribute that affects slides is the <code>allowframebreaks</code> class, which sets the <code>allowframebreaks</code> option, causing multiple slides to be created if the content overfills the frame. This is recommended especially for bibliographies:</p>
-<pre><code># References {.allowframebreaks}</code></pre>
-<h2 id="speaker-notes">Speaker notes</h2>
+<pre>
+   <code># References {.allowframebreaks}</code>
+</pre>
+<h2 id="tocAnchor-1-41-5">Speaker notes</h2>
 <p>reveal.js has good support for speaker notes. You can add notes to your markdown document thus:</p>
-<pre><code>&lt;div class=&quot;notes&quot;&gt;
+<pre>
+   <code>&lt;div class="notes"&gt;
 This is my note.
 
 - It can contain markdown
 - like this list
 
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;</code>
+</pre>
 <p>To show the notes window, press <code>s</code> while viewing the presentation. Notes are not yet supported for other slide formats, but the notes will not appear on the slides themselves.</p>
-<h1 id="epub-metadata">EPUBメタデータ</h1>
+<h1 id="tocAnchor-1-47">EPUBメタデータ</h1>
 <p>EPUB metadata may be specified using the <code>--epub-metadata</code> option, but if the source document is markdown, it is better to use a YAML metadata block. Here is an example:</p>
-<pre><code>---
+<pre>
+   <code>---
 title:
 - type: main
   text: My Book
@@ -1502,10 +1950,10 @@ identifier:
   text: doi:10.234234.234/33
 publisher:  My Press
 rights:  (c) 2007 John Smith, CC BY-NC
-...</code></pre>
+...</code>
+</pre>
 <p>The following fields are recognized:</p>
-<dl>
-<dt><code>identifier</code></dt>
+<dl><dt><code>identifier</code></dt>
 <dd>Either a string value or an object with fields <code>text</code> and <code>scheme</code>. Valid values for <code>scheme</code> are <code>ISBN-10</code>, <code>GTIN-13</code>, <code>UPC</code>, <code>ISMN-10</code>, <code>DOI</code>, <code>LCCN</code>, <code>GTIN-14</code>, <code>ISBN-13</code>, <code>Legal deposit number</code>, <code>URN</code>, <code>OCLC</code>, <code>ISMN-13</code>, <code>ISBN-A</code>, <code>JP</code>, <code>OLCC</code>.
 </dd>
 <dt><code>title</code></dt>
@@ -1550,35 +1998,39 @@ rights:  (c) 2007 John Smith, CC BY-NC
 <dt><code>stylesheet</code></dt>
 <dd>A string value (path to CSS stylesheet).
 </dd>
-</dl>
-<h1 id="literate-haskell-support">Literate Haskellのサポート</h1>
+</dl><h1 id="tocAnchor-1-48">Literate Haskellのサポート</h1>
 <p>If you append <code>+lhs</code> (or <code>+literate_haskell</code>) to an appropriate input or output format (<code>markdown</code>, <code>mardkown_strict</code>, <code>rst</code>, or <code>latex</code> for input or output; <code>beamer</code>, <code>html</code> or <code>html5</code> for output only), pandoc will treat the document as literate Haskell source. This means that</p>
-<ul>
-<li><p>In markdown input, “bird track” sections will be parsed as Haskell code rather than block quotations. Text between <code>\begin{code}</code> and <code>\end{code}</code> will also be treated as Haskell code.</p></li>
+<ul><li><p>In markdown input, “bird track” sections will be parsed as Haskell code rather than block quotations. Text between <code>\begin{code}</code> and <code>\end{code}</code> will also be treated as Haskell code.</p></li>
 <li><p>In markdown output, code blocks with classes <code>haskell</code> and <code>literate</code> will be rendered using bird tracks, and block quotations will be indented one space, so they will not be treated as Haskell code. In addition, headers will be rendered setext-style (with underlines) rather than atx-style (with ‘#’ characters). (This is because ghc treats ‘#’ characters in column 1 as introducing line numbers.)</p></li>
 <li><p>In restructured text input, “bird track” sections will be parsed as Haskell code.</p></li>
 <li><p>In restructured text output, code blocks with class <code>haskell</code> will be rendered using bird tracks.</p></li>
 <li><p>In LaTeX input, text in <code>code</code> environments will be parsed as Haskell code.</p></li>
 <li><p>In LaTeX output, code blocks with class <code>haskell</code> will be rendered inside <code>code</code> environments.</p></li>
 <li><p>In HTML output, code blocks with class <code>haskell</code> will be rendered with class <code>literatehaskell</code> and bird tracks.</p></li>
-</ul>
-<p>Examples:</p>
-<pre><code>pandoc -f markdown+lhs -t html</code></pre>
+</ul><p>Examples:</p>
+<pre>
+   <code>pandoc -f markdown+lhs -t html</code>
+</pre>
 <p>reads literate Haskell source formatted with markdown conventions and writes ordinary HTML (without bird tracks).</p>
-<pre><code>pandoc -f markdown+lhs -t html+lhs</code></pre>
+<pre>
+   <code>pandoc -f markdown+lhs -t html+lhs</code>
+</pre>
 <p>writes HTML with the Haskell code in bird tracks, so it can be copied and pasted as literate Haskell source.</p>
-<h1 id="custom-writers">カスタムWriter</h1>
+<h1 id="tocAnchor-1-49">カスタムWriter</h1>
 <p>Pandoc can be extended with custom writers written in <a href="http://www.lua.org">lua</a>. (Pandoc includes a lua interpreter, so lua need not be installed separately.)</p>
 <p>To use a custom writer, simply specify the path to the lua script in place of the output format. For example:</p>
-<pre><code>pandoc -t data/sample.lua</code></pre>
+<pre>
+   <code>pandoc -t data/sample.lua</code>
+</pre>
 <p>Creating a custom writer requires writing a lua function for each possible element in a pandoc document. To get a documented example which you can modify according to your needs, do</p>
-<pre><code>pandoc --print-default-data-file sample.lua</code></pre>
-<h1 id="authors">Authors</h1>
+<pre>
+   <code>pandoc --print-default-data-file sample.lua</code>
+</pre>
+<h1 id="tocAnchor-1-50">Authors</h1>
 <p>© 2006-2013 John MacFarlane (jgm at berkeley dot edu). Released under the <a href="http://www.gnu.org/copyleft/gpl.html" title="GNU General Public License">GPL</a>, version 2 or greater. This software carries no warranty of any kind. (See COPYRIGHT for full copyright and warranty notices.) Other contributors include Recai Oktaş, Paulo Tanimoto, Peter Wang, Andrea Rossato, Eric Kow, infinity0x, Luke Plant, shreevatsa.public, Puneeth Chaganti, Paul Rivier, rodja.trappe, Bradley Kuhn, thsutton, Nathan Gass, Jonathan Daugherty, Jérémy Bobbio, Justin Bogner, qerub, Christopher Sawicki, Kelsey Hightower, Masayoshi Takahashi, Antoine Latter, Ralf Stephan, Eric Seidel, B. Scott Michel, Gavin Beatty, Sergey Astanin, Arlo O’Keeffe, Denis Laxalde, Brent Yorgey, David Lazar, Jamie F. Olson.</p>
 <section class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>このルールは、通常の段落において下記のような人物のイニシャルが</p>
+   <hr />
+   <ol><li id="fn1"><p>このルールは、通常の段落において下記のような人物のイニシャルが</p>
 <pre><code>B. Russell was an English philosopher.</code></pre>
 <p>リストアイテムとして認識されないようにするためです。</p>
 <p>ただし、このルールは下記の文を</p>
