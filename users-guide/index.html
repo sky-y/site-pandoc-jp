@@ -94,7 +94,7 @@
                            <a href="#tocAnchor-1-6-3"><span class="tocnumber">3.3</span> <span class="toctext">一般的なWriterオプション</span></a>
                         </li>
                         <li class="toc_level-2 toc_section-10">
-                           <a href="#tocAnchor-1-6-4"><span class="tocnumber">3.4</span> <span class="toctext">特定のWriterに影響を与えるオプション [options-affecting-specific-writers]</span></a>
+                           <a href="#tocAnchor-1-6-4"><span class="tocnumber">3.4</span> <span class="toctext">特定のWriterに影響を与えるオプション</span></a>
                         </li>
                         <li class="toc_level-2 toc_section-11">
                            <a href="#tocAnchor-1-6-5"><span class="tocnumber">3.5</span> <span class="toctext">引用文献の表示</span></a>
@@ -230,6 +230,7 @@
 </div><p>原著：John MacFarlane</p>
 <p>バージョン：1.9.4.5</p>
 <p>翻訳：Yuki Fujiwara（2014年1月29日）</p>
+<p>ユーザーズガイド日本語訳の原本は <a href="https://github.com/sky-y/pandoc/blob/master/doc-jp/README-JP.md">https://github.com/sky-y/pandoc/blob/master/doc-jp/README-JP.md</a> にあります。 誤りや訂正などがありましたら、<a href="https://github.com/sky-y/pandoc/issues">Issues</a>にご投稿下さい。</p>
 <h1 id="tocAnchor-1-1">書式</h1>
 <p>pandoc [<em>options</em>] [<em>input-file</em>]…</p>
 <h1 id="tocAnchor-1-2">説明</h1>
@@ -490,7 +491,7 @@
 <dt><code>-A</code> <em>FILE</em>, <code>--include-after-body=</code><em>FILE</em></dt>
 <dd><p>文書本文(body)の末尾に、<em>FILE</em>の内容をそのままつけ加えます（具体的には、HTMLの<code>&lt;/body&gt;</code>タグの直前や、LaTeXの<code>\end{document}</code>の直前です）。 複数のファイルを含めるために、このオプションを複数回指定することができます。オプションを指定した順番通りに、出力ファイルの文書本文末尾へも追加されます。 このオプションにより、<code>--standalone</code>も暗黙に指定されます。</p>
 </dd>
-</dl><h2 id="tocAnchor-1-6-4">特定のWriterに影響を与えるオプション [options-affecting-specific-writers]</h2>
+</dl><h2 id="tocAnchor-1-6-4">特定のWriterに影響を与えるオプション</h2>
 <dl><dt><code>--self-contained</code></dt>
 <dd><p>他のファイルに依存せず、単一ファイルで完結したHTMLを生成します。 リンクされたスクリプト、スタイルシート、画像および動画は、<code>data:</code> URIスキームを用いてHTMLファイル内に埋め込まれます。この出力ファイルは、一切の外部ファイルを必要とせず、ネットが繋がらない場所でも正しくブラウザで表示できるという意味では、自己完結した(self-contained)ファイルといえるでしょう。 このオプションはHTMLに関連した出力フォーマットに対して有効であり、具体的には<code>html</code>, <code>html5</code>, <code>html+lhs</code>, <code>html5+lhs</code>, <code>s5</code>, <code>slidy</code>, <code>slideous</code>, <code>dzslides</code>, <code>revealjs</code>で用いることができます。 絶対パスのURLで指定されたスクリプト、画像、スタイルシートはダウンロードされる一方で、相対パスのURLで指定されたそれらはまずカレントディレクトリから検索され、その後ユーザデータディレクトリから検索されます（<code>--data-dir</code>の節を参照）。最後に、Pandocのデフォルトデータディレクトリから検索されます。 なお、<code>--self-contained</code>は<code>--mathjax</code>オプションと併用することができません。</p>
 </dd>
