@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Japanese Pandoc User Association]]></title>
+  <title><![CDATA[Japanese Pandoc User's Association]]></title>
   <link href="http://sky-y.github.io/site-pandoc-jp/atom.xml" rel="self"/>
   <link href="http://sky-y.github.io/site-pandoc-jp/"/>
-  <updated>2014-01-29T15:49:29+09:00</updated>
+  <updated>2014-01-29T16:03:24+09:00</updated>
   <id>http://sky-y.github.io/site-pandoc-jp/</id>
   <author>
-    <name><![CDATA[Japanese Pandoc User Association]]></name>
+    <name><![CDATA[Japanese Pandoc User's Association]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
