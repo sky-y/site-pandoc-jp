@@ -162,7 +162,7 @@
 <p>ファイルの代わりに、絶対パスのURIを指定することもできます。 この場合、PandocはHTTPを用いてコンテンツを取得します。</p>
 <pre><code>pandoc -f html -t markdown http://www.fsf.org</code></pre>
 <p>複数の<em>input-file</em>が指定されている場合、Pandocは解析の前に、各入力ファイルを結合してその間に空行を挿入します。</p>
-<p>入力および出力フォーマットはオプションを用いて明示的に指定できます。 入力フォーマットは<code>-r/--read</code>または<code>-f/--from</code>により、 出力フォーマットは<code>-w/--write</code>または<code>-t/--to</code>により指定できます。 例えば、LaTeXファイルの<code>hello.txt</code>を入力とし、Markdownに出力する場合は、以下のようなコマンドを実行します：</p>
+<p>入力および出力フォーマットはオプションを用いて明示的に指定できます。 入力フォーマットは<code>-r/--read</code>または<code>-f/--from</code>により、 出力フォーマットは<code>-w/--write</code>または<code>-t/--to</code>により指定できます。 例えば、Markdownファイルの<code>hello.txt</code>を入力とし、LaTeXに出力する場合は、以下のようなコマンドを実行します：</p>
 <pre><code>pandoc -f markdown -t latex hello.txt</code></pre>
 <p>HTMLファイルの<code>hello.html</code>をMarkdownに変換する場合はこのようにします：</p>
 <pre><code>pandoc -f html -t markdown hello.html</code></pre>
