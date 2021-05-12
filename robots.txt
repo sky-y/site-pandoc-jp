@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://sky-y.github.io/site-pandoc-jp/sitemap.xml 
